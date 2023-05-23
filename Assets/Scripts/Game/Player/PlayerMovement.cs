@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,37 +6,34 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed;
+    [SerializeField] private float _speed;
     private Rigidbody2D _rigidBody;
     private Vector2 _movementInput;
     private Vector2 _smoothedMovementInput;
     private Vector2 _movementInputSmoothVelocity;
-
-    private float _inputHorizontal;
-    private float _inputVertical;
-    private Vector3 _currentScale;
-
     private Animator _animator;
+    private Camera _camera;
+    private AnimationController _animationController;
 
     private void Awake() {
+        // Player Rigidbody2D
         _rigidBody = GetComponent<Rigidbody2D>();
+
+        // Player animations
         _animator = _rigidBody.GetComponent<Animator>();
+        _animationController = GetComponent<AnimationController>();
+
+        // Following camera
+        _camera = Camera.main;
     }
 
     private void FixedUpdate() {
+        _animationController.FlippingCharacter(_rigidBody);
+        _animationController.MoveAnimations(_rigidBody, _animator);
+        SetPlayerVelocity();
+    }
 
-        _inputHorizontal = Input.GetAxisRaw("Horizontal");
-        _inputVertical = Input.GetAxisRaw("Vertical");
-
-        MoveAnimations(_inputHorizontal, _inputVertical);
-
-        _currentScale = _rigidBody.transform.localScale;
-
-        if (_inputHorizontal * _currentScale.x < 0) {
-            _rigidBody.transform.localScale = new Vector3(-_currentScale.x, _currentScale.y, _currentScale.z);
-        }
-
+    private void SetPlayerVelocity() {
         _smoothedMovementInput = Vector2.SmoothDamp(
             _smoothedMovementInput,
             _movementInput,
@@ -43,17 +41,6 @@ public class PlayerMovement : MonoBehaviour
             0.1f
         );
         _rigidBody.velocity = _smoothedMovementInput * _speed;
-    }
-
-    private void MoveAnimations(float _inputHorizontal, float _inputVertical) {
-        if (_inputHorizontal != 0 || _inputVertical != 0) {
-            _animator.ResetTrigger("stop");
-            _animator.SetTrigger("moving");
-        }
-        else {
-            _animator.ResetTrigger("moving");
-            _animator.SetTrigger("stop");
-        }
     }
 
     private void OnMove(InputValue inputValue) {
