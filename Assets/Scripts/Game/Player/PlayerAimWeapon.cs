@@ -16,17 +16,16 @@ public class PlayerAimWeapon : MonoBehaviour {
     }
 
     private void Update() {
-    HandleAiming();
-    //HandleShooting();
+        HandleAiming();
+        //HandleShooting();
     }
 
     private void HandleAiming() {
-        
-        _mousePos = _mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
-        if(_rigidBody.transform.localScale.x<0){
-            _mousePos = new Vector3(-_mousePos.x, -_mousePos.y, _mousePos.z);
+        if(_rigidBody.transform.localScale.x * _aimTransform.transform.localScale.x < 0){
+            _aimTransform.transform.localScale = new Vector3(-_aimTransform.transform.localScale.x, -_aimTransform.transform.localScale.y, -_aimTransform.transform.localScale.z); 
         }
-        Vector3 aimDirection = (_mousePos - transform.position);
+        _mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 aimDirection = _mousePos - transform.position;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         _aimTransform.rotation = Quaternion.Euler(0,0,angle);
     }

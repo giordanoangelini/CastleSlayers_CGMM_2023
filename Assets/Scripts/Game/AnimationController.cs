@@ -12,7 +12,6 @@ public class AnimationController : MonoBehaviour
          _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
     public void FlippingCharacterOnMove(Rigidbody2D rigidbody) {
-        // Flipping image
         Vector3 _currentScale = rigidbody.transform.localScale;
         if (rigidbody.velocity.x * _currentScale.x < 0) {
             rigidbody.transform.localScale = new Vector3(
@@ -22,12 +21,16 @@ public class AnimationController : MonoBehaviour
 
     public void FlippingCharacterOnAim(Rigidbody2D rigidbody) {
         _mousePos = _mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
-        // Flipping image
         Vector3 _currentScale = rigidbody.transform.localScale;
-        if (_mousePos.x * _currentScale.x < 0) {
+        if (HandleViewPort(_mousePos.x) * _currentScale.x < 0) {
             rigidbody.transform.localScale = new Vector3(
                 -_currentScale.x, _currentScale.y, _currentScale.z);  
         }
+    }
+
+    public int HandleViewPort(float num) {
+        if (num < 0.5f) return -1;
+        else return 1;
     }
 
     public void MoveAnimations(Rigidbody2D rigidbody, Animator animator) {
