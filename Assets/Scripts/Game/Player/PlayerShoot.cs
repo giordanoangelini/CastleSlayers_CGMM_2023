@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _bulletSpeed;
-    [SerializeField] private Transform _weapon;
+    [SerializeField] private Transform _fireSpot;
     private bool _fireContinuously;
     
     void Update()
@@ -19,9 +19,15 @@ public class PlayerShoot : MonoBehaviour
 
     private void FireBullet()
     {
-        GameObject bullet = Instantiate(_bulletPrefab, _weapon.transform.position, _weapon.transform.rotation);
+        GameObject bullet = Instantiate(_bulletPrefab, _fireSpot.transform.position, _fireSpot.transform.rotation);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        rigidbody.velocity = _bulletSpeed * _weapon.transform.up;
+        if(transform.localScale.x<0){
+            rigidbody.velocity = _bulletSpeed * -_fireSpot.transform.right;
+        }
+        else{
+            rigidbody.velocity = _bulletSpeed * _fireSpot.transform.right;
+        }
+        
     }
     private void OnFire(InputValue inputValue)
     {

@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
         _animator = _rigidBody.GetComponent<Animator>();
         _animationController = GetComponent<AnimationController>();
 
-        // Following camera
-        _camera = Camera.main;
     }
 
     private void FixedUpdate() {
