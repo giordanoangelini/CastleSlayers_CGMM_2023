@@ -21,16 +21,10 @@ public class PlayerShoot : MonoBehaviour
     {
         GameObject bullet = Instantiate(_bulletPrefab, _fireSpot.transform.position, _fireSpot.transform.rotation);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
-        if(transform.localScale.x<0){
-            rigidbody.velocity = _bulletSpeed * -_fireSpot.transform.right;
-        }
-        else{
-            rigidbody.velocity = _bulletSpeed * _fireSpot.transform.right;
-        }
-        
+        rigidbody.velocity = _bulletSpeed * _fireSpot.transform.right;
     }
     private void OnFire(InputValue inputValue)
     {
-    _fireContinuously = inputValue.isPressed;
+        _fireContinuously = inputValue.isPressed;
     }
 }
