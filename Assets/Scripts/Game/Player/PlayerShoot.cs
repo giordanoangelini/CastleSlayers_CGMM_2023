@@ -19,6 +19,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void FireBullet()
     {
+        
         GameObject bullet = Instantiate(_bulletPrefab, _fireSpot.transform.position, _fireSpot.transform.rotation);
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
         rigidbody.velocity = _bulletSpeed * _fireSpot.transform.right;
