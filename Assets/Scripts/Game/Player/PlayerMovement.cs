@@ -28,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        _animationController.FlippingCharacter(_rigidBody);
+        //_animationController.FlippingCharacterOnMove(_rigidBody);
+        _animationController.FlippingCharacterOnAim(_rigidBody);
         _animationController.MoveAnimations(_rigidBody, _animator);
         SetPlayerVelocity();
     }

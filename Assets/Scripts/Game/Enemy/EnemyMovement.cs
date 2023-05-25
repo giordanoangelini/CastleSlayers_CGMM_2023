@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate() {
         _animationController.MoveAnimations(_rigidBody, _animator);
-        _animationController.FlippingCharacter(_rigidBody);
+        _animationController.FlippingCharacterOnMove(_rigidBody);
         UpdateTragetDirection();
         SetEnemyVelocity();
     }
