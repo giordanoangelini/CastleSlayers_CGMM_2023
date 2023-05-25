@@ -7,6 +7,10 @@ public class AnimationController : MonoBehaviour
 {
     private float _epsilon = 0.05f;
     private Vector3 _mousePos;
+    private Camera _mainCam;
+    private void Awake() {
+         _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+    }
     public void FlippingCharacterOnMove(Rigidbody2D rigidbody) {
         // Flipping image
         Vector3 _currentScale = rigidbody.transform.localScale;
@@ -17,7 +21,7 @@ public class AnimationController : MonoBehaviour
     }
 
     public void FlippingCharacterOnAim(Rigidbody2D rigidbody) {
-        _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        _mousePos = _mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
         // Flipping image
         Vector3 _currentScale = rigidbody.transform.localScale;
         if (_mousePos.x * _currentScale.x < 0) {
