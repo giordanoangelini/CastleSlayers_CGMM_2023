@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerAimWeapon : MonoBehaviour {
-    public Vector3 _mousePos;
+    private Vector3 _mousePos;
     private Transform _aimTransform;
 
     private Rigidbody2D _rigidBody;
@@ -22,7 +22,6 @@ public class PlayerAimWeapon : MonoBehaviour {
     private void HandleAiming() {
         
         _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        
         if(_rigidBody.transform.localScale.x<0){
             _mousePos = new Vector3(-_mousePos.x, -_mousePos.y, _mousePos.z);
         }
