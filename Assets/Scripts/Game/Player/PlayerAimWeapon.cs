@@ -25,6 +25,7 @@ public class PlayerAimWeapon : MonoBehaviour {
             _aimTransform.transform.localScale = new Vector3(-_aimTransform.transform.localScale.x, -_aimTransform.transform.localScale.y, -_aimTransform.transform.localScale.z); 
         }
         _mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        //int aimOffset = 15;
         Vector3 aimDirection = _mousePos - transform.position;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         _aimTransform.rotation = Quaternion.Euler(0,0,angle);
