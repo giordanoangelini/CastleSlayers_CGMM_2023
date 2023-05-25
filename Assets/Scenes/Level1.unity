@@ -34062,7 +34062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &619394801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34216,10 +34216,10 @@ GameObject:
   - component: {fileID: 956675287}
   - component: {fileID: 956675286}
   - component: {fileID: 956675295}
+  - component: {fileID: 956675294}
   - component: {fileID: 956675292}
   - component: {fileID: 956675291}
   - component: {fileID: 956675293}
-  - component: {fileID: 956675294}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34305,9 +34305,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956675285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.503, y: 0.9259999, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1976630660}
   m_Father: {fileID: 0}
@@ -34445,6 +34445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac45d05cc51d44739918dc7cfe0918b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mousePos: {x: 0, y: 0, z: 0}
 --- !u!1 &1151820167
 GameObject:
   m_ObjectHideFlags: 0
@@ -34470,9 +34471,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151820167}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: -3.6, z: 0}
+  m_LocalPosition: {x: 0.95, y: 2.7, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1976630660}
   m_RootOrder: -1
@@ -35596,8 +35597,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1976630660
-Transform:
+--- !u!224 &1976630660
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -35612,6 +35613,11 @@ Transform:
   m_Father: {fileID: 956675290}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.47048646}
+  m_AnchorMax: {x: 0.5261081, y: 0.5}
+  m_AnchoredPosition: {x: 1.2142079, y: -5.9603424}
+  m_SizeDelta: {x: 99.46865, y: 99.396675}
+  m_Pivot: {x: 0.5148779, y: 0.4369998}
 --- !u!1001 &2028770929
 PrefabInstance:
   m_ObjectHideFlags: 0
