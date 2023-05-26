@@ -47,4 +47,9 @@ public class EnemyMovement : MonoBehaviour
             _rigidBody.velocity = _targetDirection * _speed;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        _animator.SetTrigger("death");
+        Destroy(gameObject, 2f);
+    }
 }
