@@ -26,13 +26,8 @@ public class PlayerAimWeapon : MonoBehaviour {
         }
         _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector3 aimDirection = (_mousePos - _aimTransform.transform.position).normalized;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - AngleHandler();
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         _aimTransform.rotation = Quaternion.Euler(0,0,angle);
-    }
-
-    private float AngleHandler()
-    {
-        return 0;   
     }
 
     private void HandleShooting() {

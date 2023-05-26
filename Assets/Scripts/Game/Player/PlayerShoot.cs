@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _bulletSpeed;
-    [SerializeField] private Transform _fireSpot;
+    private Transform _fireSpot;
     [SerializeField] private float _timeBetweenShots;
     [SerializeField] private Transform _weapon;
     private float _lastFireTime;
@@ -17,6 +17,7 @@ public class PlayerShoot : MonoBehaviour
     
     private void Awake() {
         _animator = _weapon.GetComponent<Animator>();
+        _fireSpot = _weapon.Find("FireSpot");
     }
     void Update()
     {
