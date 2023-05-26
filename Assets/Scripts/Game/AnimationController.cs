@@ -20,12 +20,17 @@ public class AnimationController : MonoBehaviour
     }
 
     public void FlippingCharacterOnAim(Rigidbody2D rigidbody) {
-        _mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        _mousePos = _mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
         Vector3 _currentScale = rigidbody.transform.localScale;
-        if (_mousePos.x * _currentScale.x < 0) {
+        if (ViewportHandler(_mousePos.x) * _currentScale.x < 0) {
             rigidbody.transform.localScale = new Vector3(
                 -_currentScale.x, _currentScale.y, _currentScale.z);  
         }
+    }
+
+    private int ViewportHandler(float num) {
+        if (num < 0.5f) return -1;
+        else return 1;
     }
 
     public void MoveAnimations(Rigidbody2D rigidbody, Animator animator) {
