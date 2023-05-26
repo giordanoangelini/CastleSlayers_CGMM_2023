@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Bullet : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Bullet : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-        if (collision.GetComponent<Collider2D>()) {
+        if (collision.GetComponent<TilemapCollider2D>()) {
             Destroy(gameObject);
         }
     }

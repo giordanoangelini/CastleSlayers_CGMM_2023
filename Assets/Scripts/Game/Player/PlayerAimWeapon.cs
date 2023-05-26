@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System. Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,10 @@ public class PlayerAimWeapon : MonoBehaviour {
     private Vector3 _mousePos;
     private Transform _aimTransform;
     private Rigidbody2D _rigidBody;
-    private Camera _mainCam;
    
     private void Awake() {
         _aimTransform = transform.Find("Aim");
         _rigidBody = GetComponent<Rigidbody2D>();
-        _mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     private void Update() {
@@ -25,12 +24,17 @@ public class PlayerAimWeapon : MonoBehaviour {
             _aimTransform.transform.localScale = Vector3.Scale(
                 _aimTransform.transform.localScale, new Vector3(-1,-1,1));
         }
-        _mousePos = _mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector3 aimDirection = _mousePos - transform.position;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector3 aimDirection = (_mousePos - _aimTransform.transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - AngleHandler();
         _aimTransform.rotation = Quaternion.Euler(0,0,angle);
     }
-        
+
+    private float AngleHandler()
+    {
+        return 0;   
+    }
+
     private void HandleShooting() {
         if (Input.GetMouseButtonDown(0)) {
  
