@@ -40,15 +40,15 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/2022.2.17f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets/Scripts/Game/Camera/CameraFollowing.cs" />
-     <Compile Include="Assets/Scripts/Game/Player/PlayerAimWeapon.cs" />
-     <Compile Include="Assets/Scripts/Game/AnimationController.cs" />
-     <Compile Include="Assets/Scripts/Game/Player/Bullet.cs" />
-     <Compile Include="Assets/Scripts/Game/Enemy/EnemyMovement.cs" />
-     <Compile Include="Assets/Scripts/Game/Enemy/ControlPlayerAwareness.cs" />
-     <Compile Include="Assets/Scripts/Game/Player/PlayerMovement.cs" />
-     <Compile Include="Assets/Scripts/Game/Player/PlayerShoot.cs" />
-     <Compile Include="Assets/Scripts/Game/Player/CrosshairPosition.cs" />
+     <Compile Include="Assets/Scripts/Player/PlayerAimWeapon.cs" />
+     <Compile Include="Assets/Scripts/Player/Bullet.cs" />
+     <Compile Include="Assets/Scripts/Enemy/EnemyMovement.cs" />
+     <Compile Include="Assets/Scripts/Utils/AnimationController.cs" />
+     <Compile Include="Assets/Scripts/Camera/CameraFollowing.cs" />
+     <Compile Include="Assets/Scripts/Player/PlayerShoot.cs" />
+     <Compile Include="Assets/Scripts/Player/CrosshairPosition.cs" />
+     <Compile Include="Assets/Scripts/Player/PlayerMovement.cs" />
+     <Compile Include="Assets/Scripts/Enemy/ControlPlayerAwareness.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2022.2.17f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
