@@ -35,7 +35,7 @@ public class PlayerShoot : MonoBehaviour
     private void FireBullet()
     {
         _animator.SetTrigger("shoot");
-        GameObject bullet = Instantiate(_bulletPrefab, _fireSpot.transform.position, _fireSpot.transform.rotation);
+        GameObject bullet = Instantiate(_bulletPrefab, _fireSpot.transform.position, new Quaternion());
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
         rigidbody.velocity = _bulletSpeed * _fireSpot.transform.right;
     }
