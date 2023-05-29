@@ -6,12 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerAimWeapon : MonoBehaviour {
     private Vector3 _mousePos;
-    private Transform _aimTransform;
     private Rigidbody2D _rigidBody;
    
     private void Awake() {
-        _aimTransform = transform.Find("Aim");
-        _rigidBody = GetComponent<Rigidbody2D>();
+        _rigidBody = GetComponentInParent<Rigidbody2D>();
     }
 
     private void Update() {
@@ -20,14 +18,14 @@ public class PlayerAimWeapon : MonoBehaviour {
     }
 
     private void HandleAiming() {
-        if(_rigidBody.transform.localScale.x * _aimTransform.transform.localScale.x < 0){
-            _aimTransform.transform.localScale = Vector3.Scale(
-                _aimTransform.transform.localScale, new Vector3(-1,-1,1));
+        if(_rigidBody.transform.localScale.x * transform.localScale.x < 0){
+            transform.localScale = Vector3.Scale(
+                transform.localScale, new Vector3(-1,-1,1));
         }
         _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        Vector3 aimDirection = (_mousePos - _aimTransform.transform.position).normalized;
+        Vector3 aimDirection = (_mousePos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        _aimTransform.rotation = Quaternion.Euler(0,0,angle);
+        transform.rotation = Quaternion.Euler(0,0,angle);
     }
 
     private void HandleShooting() {
