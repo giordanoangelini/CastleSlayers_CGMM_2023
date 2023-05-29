@@ -48,6 +48,7 @@
      <Compile Include="Assets/Scripts/Camera/CameraFollowing.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerShoot.cs" />
      <Compile Include="Assets/Scripts/Player/CrosshairPosition.cs" />
+     <Compile Include="Assets/Scripts/Player/CollectWeapons.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerMovement.cs" />
      <Compile Include="Assets/Scripts/Enemy/ControlPlayerAwareness.cs" />
     <Reference Include="UnityEngine">

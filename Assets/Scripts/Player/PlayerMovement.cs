@@ -15,11 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Camera _camera;
     
     private void Awake() {
-        // Player Rigidbody2D
         _rigidBody = GetComponent<Rigidbody2D>();
-
-        // Player animations
-        _animator = _rigidBody.GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate() {
