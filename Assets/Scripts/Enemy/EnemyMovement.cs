@@ -42,8 +42,10 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        _animator.SetTrigger("death");
-        GetComponent<Collider2D>().enabled = false;
-        Destroy(gameObject, 2f);
+        if (collision.gameObject.name.ToLower().Contains("bullet")) {
+            _animator.SetTrigger("death");
+            GetComponent<Collider2D>().enabled = false;
+            Destroy(gameObject, 2f);
+        }
     }
 }

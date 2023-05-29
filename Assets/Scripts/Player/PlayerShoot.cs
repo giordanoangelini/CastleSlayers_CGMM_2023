@@ -5,27 +5,34 @@ using UnityEngine.InputSystem;
 
 public class PlayerShoot : MonoBehaviour
 {
-    private Transform _fireSpot;
-    private Transform _weapon;
     private float _lastFireTime;
     private WeaponParameters _weaponParameters;
+    private Transform _hands;
+    private Transform _weapon;
+    private Transform _fireSpot;
     
     private void Awake() {
-        _weapon = transform.Find("Weapon");
-        _fireSpot = _weapon.transform.Find("FireSpot");
-        _weaponParameters = _weapon.GetComponent<WeaponParameters>();
+        _hands = transform.Find("Hands");
+        DetectWeapon();
     }
 
-    private void FireBullet()
-    {
+    private void DetectWeapon() {
+        foreach (Transform child in _hands.transform) {
+            if (child.gameObject.activeSelf) {
+                _weapon = child;
+            }
+        }
+        _weaponParameters = _weapon.GetComponent<WeaponParameters>();
+        _fireSpot = _weapon.Find("FireSpot");
+    }
+
+    private void FireBullet() {
+        DetectWeapon();
         GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         Rigidbody2D rigidbody = bullet.GetComponent<Rigidbody2D>();
         rigidbody.velocity = _weaponParameters.bulletSpeed * _fireSpot.transform.right;
     }
-    private void OnFire(InputValue inputValue)
-    {
-        if (inputValue.isPressed) {
-            FireBullet();
-        }
+    private void OnFire(InputValue inputValue) {
+        FireBullet();
     }
 }
