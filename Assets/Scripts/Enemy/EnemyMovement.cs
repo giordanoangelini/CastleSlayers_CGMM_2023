@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -18,9 +17,9 @@ public class EnemyMovement : MonoBehaviour
         _controlPlayerAwareness = GetComponent<ControlPlayerAwareness>();
     }
 
-    private void FixedUpdate() {
-        AnimationController.MoveAnimations(_rigidBody, _animator);
-        AnimationController.FlippingCharacterOnMove(_rigidBody);
+    private void Update() {
+        GameUtils.MoveAnimations(_rigidBody, _animator);
+        GameUtils.FlippingCharacterOnMove(_rigidBody);
         UpdateTragetDirection();
         SetEnemyVelocity();
     }
@@ -41,11 +40,4 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.name.ToLower().Contains("bullet")) {
-            _animator.SetTrigger("death");
-            GetComponent<Collider2D>().enabled = false;
-            Destroy(gameObject, 2f);
-        }
-    }
 }

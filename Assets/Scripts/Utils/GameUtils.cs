@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public static class AnimationController
+public static class GameUtils
 {
     private static float _epsilon = 0.05f;
     private static Vector3 _mousePos;
@@ -39,5 +39,17 @@ public static class AnimationController
             animator.ResetTrigger("move");
             animator.SetTrigger("stop");
         }
+    }
+
+    public static void DieAnimations(GameObject obj, Animator animator) {
+        animator.SetTrigger("death");
+        obj.GetComponent<Collider2D>().enabled = false;
+    }
+
+    public static Vector2 AttackArea(float scale_x, float position_x, float position_y, float attack_range) {
+        if (scale_x < 0) {
+            return new Vector2(position_x - attack_range, position_y + attack_range);
+        }
+        return new Vector2(position_x + attack_range, position_y + attack_range);
     }
 }
