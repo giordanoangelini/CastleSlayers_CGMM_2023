@@ -10,10 +10,14 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, _bulletLife);
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.GetComponent<EnemyMovement>()) {
+
+        if (collision.name.ToLower().Contains("enemy")) {
             Destroy(gameObject);
+            GameUtils.DieAnimations(collision.gameObject, collision.gameObject.GetComponent<Animator>());
+            Destroy(collision.gameObject, 2f);
         }
-        if (collision.GetComponent<TilemapCollider2D>()) {
+
+        if (collision.name.ToLower().Contains("wall")) {
             Destroy(gameObject);
         }
     }

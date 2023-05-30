@@ -6,7 +6,9 @@ public class WeaponParameters : MonoBehaviour
 {
     [SerializeField] public GameObject bulletPrefab;
     [SerializeField] public float bulletSpeed;
-    [SerializeField] public float timeBetweenShots;
-    public enum FireMethods {sigle, multiple, non_stop};
-    [SerializeField] public FireMethods fireMethod;
+    [SerializeField] public float timeBetweenAttacks;
+    public enum FireMethods {single, multiple, non_stop, white};
+    [SerializeField] public FireMethods attackMethod;
+    [SerializeField] public float attackRange;
+
 }
