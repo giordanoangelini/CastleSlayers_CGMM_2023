@@ -30,36 +30,44 @@ public class ControlPlayerAwareness : MonoBehaviour
             if(transform.localScale.x < 0) dir = -transform.right;
             else dir = transform.right;
 
-            Debug.DrawRay(
+            List<string> nearest = new List<string>();
+            for (int i = -10; i < 10; i++) {
+                
+                Debug.DrawRay(
                 transform.position + new Vector3(0, -_bodyOffset, 0),
-                dir * _playerAwarenessDistance,
+                (Quaternion.AngleAxis(i*10, transform.forward) * dir) * _playerAwarenessDistance,
                 Color.red
-            );
+                );
 
-            RaycastHit2D[] hit = Physics2D.RaycastAll(
-                transform.position + new Vector3(0, -_bodyOffset, 0),
-                dir,
-                _playerAwarenessDistance
-            );
+                RaycastHit2D[] hit = Physics2D.RaycastAll(
+                    transform.position + new Vector3(0, -_bodyOffset, 0),
+                    (Quaternion.AngleAxis(i*10, transform.forward) * dir),
+                    _playerAwarenessDistance
+                );
 
-            string nearest = "";
-            foreach (RaycastHit2D coll in hit) {
-                string coll_name = coll.collider.name.ToLower();
-                if(coll_name.Contains("wall") || coll_name.Contains("player")) {
-                    nearest = coll_name;
-                    break;
+                foreach (RaycastHit2D coll in hit) {
+                    string coll_name = coll.collider.name.ToLower();
+                    if(coll_name.Contains("wall") || coll_name.Contains("player")) {
+                        nearest.Add(coll_name);
+                        break;
+                    }
                 }
             }
 
-            if (nearest.Contains("player")) AwareOfPlayer = true;
+            foreach (string str in nearest) {
+                if (str.Contains("player")) {
+                    AwareOfPlayer = true;
+                    break;
+                }
+            }
             
             Vector2 enemyToPlayerDistance = _player.position - transform.position;
             DirectionToPlayer = enemyToPlayerDistance.normalized;
 
-            if (enemyToPlayerDistance.magnitude <= _playerShootDistance) ShootPlayer = true;
+            if (AwareOfPlayer && enemyToPlayerDistance.magnitude <= _playerShootDistance) ShootPlayer = true;
             else ShootPlayer = false;
 
-            if (enemyToPlayerDistance.magnitude <= _playerAttackDistance) AttackPlayer = true;
+            if (AwareOfPlayer && enemyToPlayerDistance.magnitude <= _playerAttackDistance) AttackPlayer = true;
             else AttackPlayer = false;
 
             if (enemyToPlayerDistance.magnitude > _playerAwarenessDistance) AwareOfPlayer = false;
