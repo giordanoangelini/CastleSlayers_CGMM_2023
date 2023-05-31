@@ -6,8 +6,10 @@ public class ControlPlayerAwareness : MonoBehaviour
 {
     public bool AwareOfPlayer {get; private set;}
     public bool AttackPlayer {get; private set;}
+    public bool ShootPlayer {get; private set;}
     public Vector2 DirectionToPlayer {get; private set;}
     [SerializeField] private float _playerAwarenessDistance;
+    [SerializeField] private float _playerShootDistance;
     [SerializeField] private float _playerAttackDistance;
     private Transform _player;
 
@@ -23,11 +25,15 @@ public class ControlPlayerAwareness : MonoBehaviour
             if (enemyToPlayerDistance.magnitude <= _playerAwarenessDistance) AwareOfPlayer = true;
             else AwareOfPlayer = false;
 
+            if (enemyToPlayerDistance.magnitude <= _playerShootDistance) ShootPlayer = true;
+            else ShootPlayer = false;
+
             if (enemyToPlayerDistance.magnitude <= _playerAttackDistance) AttackPlayer = true;
             else AttackPlayer = false;
         } else {
             AwareOfPlayer = false;
             AttackPlayer = false;
+            ShootPlayer = false;
         }
     }
 }

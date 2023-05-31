@@ -10,6 +10,8 @@ public class CollectWeapons : MonoBehaviour
             Transform playerHands = other.transform.Find("Hands");
             DeactivateAll(playerHands);
             playerHands.Find(gameObject.name).gameObject.SetActive(true);
+            playerHands.GetComponentInParent<PlayerAttack>()._lastFireTime = 0f;
+            playerHands.GetComponentInParent<PlayerAttack>()._fireContinuously = false;
             Destroy(gameObject);
         }
     }

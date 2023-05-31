@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _speed;
     private Rigidbody2D _rigidBody;
     private ControlPlayerAwareness _controlPlayerAwareness;
-    private Vector2 _targetDirection;
+    public Vector2 targetDirection;
     private Animator _animator;
 
     private void Awake() {
@@ -26,17 +26,17 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdateTragetDirection() {
         if (_controlPlayerAwareness.AwareOfPlayer) {
-            _targetDirection = _controlPlayerAwareness.DirectionToPlayer;
+            targetDirection = _controlPlayerAwareness.DirectionToPlayer;
         } else {
-            _targetDirection = Vector2.zero;
+            targetDirection = Vector2.zero;
         }
     }
 
     private void SetEnemyVelocity() {
-        if (_targetDirection == Vector2.zero) {
+        if (targetDirection == Vector2.zero) {
             _rigidBody.velocity = Vector2.zero;
         } else {
-            _rigidBody.velocity = _targetDirection * _speed;
+            _rigidBody.velocity = targetDirection * _speed;
         }
     }
 
