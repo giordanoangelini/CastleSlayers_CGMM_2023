@@ -213,9 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb4368fc1484d408e90a19688a9b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 0
+  _attackRange: 1
   _timeBetweenAttacks: 2
   _blastPrefab: {fileID: 835962477682701479, guid: ccc33430adaaa43bfb6ea56ccebce7d6, type: 3}
   _blastSpeed: 10
-  _bodyOffset: 0.57
+  bodyOffset: 0.58
   _attackType: 1

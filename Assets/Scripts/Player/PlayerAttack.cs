@@ -73,8 +73,6 @@ public class PlayerAttack : MonoBehaviour
             _hands.position,
             _weaponParameters.attackRange
         );
-        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, transform.right);
-        Debug.Log(hit);
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.name.ToLower().Contains("enemy")) {
                 enemy.GetComponent<EnemyAttack>().EnemyDeath(); 
