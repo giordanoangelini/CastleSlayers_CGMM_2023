@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float _bulletLife;
+    private float _bulletLife = 2f;
     private void Start() {
         Destroy(gameObject, _bulletLife);
     }
@@ -13,8 +13,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.name.ToLower().Contains("enemy")) {
             Destroy(gameObject);
-            GameUtils.DieAnimations(collision.gameObject, collision.gameObject.GetComponent<Animator>());
-            Destroy(collision.gameObject, 2f);
+            collision.GetComponent<EnemyAttack>().EnemyDeath();
         }
 
         if (collision.name.ToLower().Contains("wall")) {

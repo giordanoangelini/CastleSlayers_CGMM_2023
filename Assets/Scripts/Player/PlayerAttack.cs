@@ -10,10 +10,11 @@ public class PlayerAttack : MonoBehaviour
     private Transform _weapon;
     private Transform _fireSpot;
 
-    private bool _fireContinuously;
-    private float _lastFireTime;
+    public bool _fireContinuously;
+    public float _lastFireTime;
     private float _flowStartTime;
     private float _maxFlowTime = 3f;
+    private bool _dead = false;
 
     
     private void Awake() {
@@ -31,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool CanAttack() {
         float timeSinceLastFire = Time.time - _lastFireTime;
-        if (timeSinceLastFire >= _weaponParameters.timeBetweenAttacks) return true;
+        if (timeSinceLastFire >= _weaponParameters.timeBetweenAttacks && !_dead) return true;
         return false;
     }
 
@@ -72,8 +73,7 @@ public class PlayerAttack : MonoBehaviour
         );
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.name.ToLower().Contains("enemy")) {
-                GameUtils.DieAnimations(enemy.gameObject, enemy.GetComponent<Animator>());
-                Destroy(enemy.gameObject, 2f);   
+                enemy.GetComponent<EnemyAttack>().EnemyDeath(); 
             }
         }
     }
@@ -98,5 +98,14 @@ public class PlayerAttack : MonoBehaviour
                 break;
             default: break;
         }
+    }
+
+    public void PlayerDeath() {
+        _dead = true;
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        transform.Find("Hands").gameObject.SetActive(false);
+        GameUtils.DieAnimations(gameObject, GetComponent<Animator>());
+        Destroy(gameObject, 3f);   
     }
 }
