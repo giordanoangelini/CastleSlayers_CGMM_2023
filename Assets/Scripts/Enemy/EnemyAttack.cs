@@ -9,6 +9,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float _timeBetweenAttacks;
     [SerializeField] private GameObject _blastPrefab;
     [SerializeField] private float _blastSpeed;
+    [SerializeField] private float _bodyOffset;
     public enum AttackType {fight, shoot};
     [SerializeField] private AttackType _attackType;
     private Rigidbody2D _rigidBody;
@@ -38,20 +39,27 @@ public class EnemyAttack : MonoBehaviour
     private void Attack() {
         if (_controlPlayerAwareness.AttackPlayer) {
             _animator.SetTrigger("attack");
-            Collider2D[] hitPlayers = Physics2D.OverlapAreaAll(new Vector2(transform.position.x, transform.position.y - _attackRange), GameUtils.AttackArea(transform.localScale.x, transform.position.x, transform.position.y, _attackRange));
+            Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(
+                new Vector2(transform.position.x, transform.position.y - _bodyOffset),
+                _attackRange
+            );
             foreach (Collider2D player in hitPlayers) {
                 if (player.name.ToLower().Contains("player")) {
-                    //Debug.Log("toccato");
-                    player.GetComponent<PlayerAttack>().PlayerDeath();
+                    Debug.Log("preso");
+                    //player.GetComponent<PlayerAttack>().PlayerDeath();
                 }
             }
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(new Vector2(transform.position.x, transform.position.y - _bodyOffset), _attackRange);
     }
     
     private void FireBlast() {
         if (_controlPlayerAwareness.ShootPlayer) {
             _lastFireTime = Time.time;
-            GameObject bullet = Instantiate(_blastPrefab, transform.Find("Pivot").position, new Quaternion());
+            GameObject bullet = Instantiate(_blastPrefab, transform.position + new Vector3(0,-_bodyOffset,0), new Quaternion());
             bullet.GetComponent<Rigidbody2D>().velocity = _blastSpeed * GetComponent<EnemyMovement>().targetDirection;
         }
     }

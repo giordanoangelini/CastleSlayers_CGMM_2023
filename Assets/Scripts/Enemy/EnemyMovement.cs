@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _speed;
     private Rigidbody2D _rigidBody;
     private ControlPlayerAwareness _controlPlayerAwareness;
-    public Vector2 targetDirection;
+    public Vector2 targetDirection {get; private set;}
     private Animator _animator;
 
     private void Awake() {

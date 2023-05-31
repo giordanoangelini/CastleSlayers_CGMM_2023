@@ -10,10 +10,11 @@ public class PlayerAttack : MonoBehaviour
     private Transform _weapon;
     private Transform _fireSpot;
 
-    public bool _fireContinuously;
-    public float _lastFireTime;
+    public bool _fireContinuously {get; set;}
+    public float _lastFireTime {get; set;}
     private float _flowStartTime;
     private float _maxFlowTime = 3f;
+    private float _bulletSpeed = 20f;
     private bool _dead = false;
 
     
@@ -51,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireBullet() {
         _lastFireTime = Time.time;
         GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
-        bullet.GetComponent<Rigidbody2D>().velocity = _weaponParameters.bulletSpeed * _fireSpot.transform.right;
+        bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
 
     private void FireMultipleBullets() {
@@ -62,20 +63,27 @@ public class PlayerAttack : MonoBehaviour
         directions[2] = _fireSpot.transform.right - new Vector3(0.2f, 0.2f, 0);
         for (int i = 0; i < 3; i++) {
             GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
-            bullet.GetComponent<Rigidbody2D>().velocity = _weaponParameters.bulletSpeed * directions[i];
+            bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * directions[i];
         }
     }
 
     private void Attack() {
-        Collider2D[] hitEnemies = Physics2D.OverlapAreaAll(
-            new Vector2(_hands.position.x, _hands.position.y -_weaponParameters.attackRange),
-            GameUtils.AttackArea(transform.localScale.x, _hands.position.x, _hands.position.y, _weaponParameters.attackRange)
+        _weapon.GetComponent<Animator>().SetTrigger("attack");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            _hands.position,
+            _weaponParameters.attackRange
         );
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, transform.right);
+        Debug.Log(hit);
         foreach (Collider2D enemy in hitEnemies) {
             if (enemy.name.ToLower().Contains("enemy")) {
                 enemy.GetComponent<EnemyAttack>().EnemyDeath(); 
             }
         }
+    }
+
+    private void OnDrawGizmos() {
+        if (_hands) Gizmos.DrawWireSphere(_hands.position, _weaponParameters.attackRange);
     }
 
     private void OnFire(InputValue inputValue) {

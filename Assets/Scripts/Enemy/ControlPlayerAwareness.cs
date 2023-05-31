@@ -12,9 +12,11 @@ public class ControlPlayerAwareness : MonoBehaviour
     [SerializeField] private float _playerShootDistance;
     [SerializeField] private float _playerAttackDistance;
     private Transform _player;
+    private Transform _pivot;
 
     private void Awake() {
         _player = FindObjectOfType<PlayerMovement>().transform;
+        _pivot = transform.Find("Pivot");
     }
 
     void Update() {

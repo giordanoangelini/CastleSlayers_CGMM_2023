@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6818991582128247969}
   - component: {fileID: 636810511099132156}
   - component: {fileID: 9093465134587130248}
+  - component: {fileID: -7946866846127361468}
   m_Layer: 0
   m_Name: Enemy_3
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6321220102826179356
 Rigidbody2D:
@@ -141,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4b65ddcad4e406c9319d651de619d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 5
+  _playerAwarenessDistance: 8
+  _playerShootDistance: 8
   _playerAttackDistance: 0
 --- !u!95 &636810511099132156
 Animator:
@@ -199,3 +201,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.05325039, y: -3.889257}
   m_Size: {x: 5.463175, y: 5.463175}
   m_Direction: 0
+--- !u!114 &-7946866846127361468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802022539678061529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0eb4368fc1484d408e90a19688a9b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRange: 0
+  _timeBetweenAttacks: 2
+  _blastPrefab: {fileID: 835962477682701479, guid: ccc33430adaaa43bfb6ea56ccebce7d6, type: 3}
+  _blastSpeed: 10
+  _bodyOffset: 0.57
+  _attackType: 1
