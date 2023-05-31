@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4778415205318266487}
   - component: {fileID: 1337911800592176640}
   - component: {fileID: 8923284174149982783}
+  - component: {fileID: 5518087335250503575}
   m_Layer: 0
   m_Name: Enemy_4
   m_TagString: Untagged
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ea95534980b4bc391b5252c81e67b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 5
 --- !u!114 &4778415205318266487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4b65ddcad4e406c9319d651de619d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 5
+  _playerAwarenessDistance: 8
+  _playerShootDistance: 0
+  _playerAttackDistance: 2
 --- !u!95 &1337911800592176640
 Animator:
   serializedVersion: 5
@@ -198,3 +201,21 @@ CapsuleCollider2D:
   m_Offset: {x: -0.05325039, y: -4.609337}
   m_Size: {x: 5.463175, y: 6.971493}
   m_Direction: 0
+--- !u!114 &5518087335250503575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397438697756907842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0eb4368fc1484d408e90a19688a9b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackRange: 0.6
+  _timeBetweenAttacks: 0
+  _blastPrefab: {fileID: 0}
+  _blastSpeed: 0
+  _bodyOffset: 0.68
+  _attackType: 0
