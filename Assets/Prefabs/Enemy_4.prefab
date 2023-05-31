@@ -217,5 +217,5 @@ MonoBehaviour:
   _timeBetweenAttacks: 0
   _blastPrefab: {fileID: 0}
   _blastSpeed: 0
-  _bodyOffset: 0.68
+  bodyOffset: 0.68
   _attackType: 0

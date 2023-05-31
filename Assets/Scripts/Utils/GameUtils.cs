@@ -11,8 +11,7 @@ public static class GameUtils
     public static void FlippingCharacterOnMove(Rigidbody2D rigidbody) {
         Vector3 _currentScale = rigidbody.transform.localScale;
         if (rigidbody.velocity.x * _currentScale.x < 0) {
-            rigidbody.transform.localScale = new Vector3(
-                -_currentScale.x, _currentScale.y, _currentScale.z);  
+            rigidbody.transform.localScale = Flip_x(_currentScale);
         }
     }
 
@@ -20,9 +19,16 @@ public static class GameUtils
         _mousePos = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue());
         Vector3 _currentScale = rigidbody.transform.localScale;
         if (ViewportHandler(_mousePos.x) * _currentScale.x < 0) {
-            rigidbody.transform.localScale = new Vector3(
-                -_currentScale.x, _currentScale.y, _currentScale.z);  
+            rigidbody.transform.localScale = Flip_x(_currentScale); 
         }
+    }
+
+    public static Vector3 Flip_x(Vector3 scale) {
+        return new Vector3(
+            -scale.x,
+            scale.y,
+            scale.z
+        );
     }
 
     private static int ViewportHandler(float num) {
