@@ -8,7 +8,7 @@ public class CrosshairPosition : MonoBehaviour {
     private void Awake() {
         Cursor.visible = false;
     }
-    void Update() {
+    void FixedUpdate() {
         Vector2 _mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         transform.position = _mousePos;
     }

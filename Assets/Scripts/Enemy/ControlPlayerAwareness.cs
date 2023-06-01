@@ -19,7 +19,7 @@ public class ControlPlayerAwareness : MonoBehaviour
         _bodyOffset = GetComponent<EnemyAttack>().bodyOffset;
     }
 
-    void Update() {
+    void FixedUpdate() {
         CheckPlayer();
     }
 

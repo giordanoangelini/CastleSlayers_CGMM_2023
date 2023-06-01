@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectWeapons : MonoBehaviour
 {
-    private void Update() {
+    private void FixedUpdate() {
         GameUtils.Float(transform);
     }
 
