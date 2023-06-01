@@ -59,6 +59,9 @@ TagManager:
   - name: Weapon
     uniqueID: 2625684479
     locked: 0
+  - name: Buttons
+    uniqueID: 1165593959
+    locked: 0
   - name: Camera
     uniqueID: 3501867765
     locked: 0

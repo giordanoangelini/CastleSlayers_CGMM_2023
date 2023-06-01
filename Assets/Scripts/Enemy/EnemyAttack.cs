@@ -14,7 +14,6 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private AttackType _attackType;
     private Rigidbody2D _rigidBody;
     private ControlPlayerAwareness _controlPlayerAwareness;
-    private Vector2 _targetDirection;
     private Animator _animator;
     private float _lastFireTime;
     private bool _dead = false;
@@ -70,6 +69,7 @@ public class EnemyAttack : MonoBehaviour
                 Attack();
                 break;
             case AttackType.shoot:
+                GameUtils.Float(transform);
                 if (CanAttack()) FireBlast();
                 break;
             default: break;

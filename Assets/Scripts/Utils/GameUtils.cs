@@ -58,4 +58,12 @@ public static class GameUtils
         }
         return new Vector2(position_x + attack_range, position_y + attack_range);
     }
+
+    public static void Float(Transform visual) {
+        visual.position = new Vector3(
+            visual.position.x, 
+            visual.position.y + Mathf.Sin(Time.time * 8) * 0.01f, 
+            0
+        );
+    }
 }

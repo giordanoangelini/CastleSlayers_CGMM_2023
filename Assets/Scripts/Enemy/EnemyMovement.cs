@@ -10,13 +10,11 @@ public class EnemyMovement : MonoBehaviour
     private ControlPlayerAwareness _controlPlayerAwareness;
     public Vector2 targetDirection {get; private set;}
     private Animator _animator;
-    private float _bodyOffset;
 
     private void Awake() {
         _rigidBody = GetComponent<Rigidbody2D>();
         _animator = _rigidBody.GetComponent<Animator>();
         _controlPlayerAwareness = GetComponent<ControlPlayerAwareness>();
-        _bodyOffset = GetComponent<EnemyAttack>().bodyOffset;
     }
 
     private void Update() {
