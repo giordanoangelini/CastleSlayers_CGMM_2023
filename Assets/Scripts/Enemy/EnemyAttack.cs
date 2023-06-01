@@ -9,10 +9,10 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float _timeBetweenAttacks;
     [SerializeField] private GameObject _blastPrefab;
     [SerializeField] private float _blastSpeed;
-    [SerializeField] public float bodyOffset;
     public enum AttackType {fight, shoot};
     [SerializeField] private AttackType _attackType;
     private Rigidbody2D _rigidBody;
+    [SerializeField] private Transform _center;
     private ControlPlayerAwareness _controlPlayerAwareness;
     private Animator _animator;
     private float _lastFireTime;
@@ -39,7 +39,7 @@ public class EnemyAttack : MonoBehaviour
         if (_controlPlayerAwareness.AttackPlayer) {
             _animator.SetTrigger("attack");
             Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(
-                new Vector2(transform.position.x, transform.position.y - bodyOffset),
+                _center.position,
                 _attackRange
             );
             foreach (Collider2D player in hitPlayers) {
@@ -52,13 +52,13 @@ public class EnemyAttack : MonoBehaviour
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(new Vector2(transform.position.x, transform.position.y - bodyOffset), _attackRange);
+        Gizmos.DrawWireSphere(_center.position, _attackRange);
     }
     
     private void FireBlast() {
         if (_controlPlayerAwareness.ShootPlayer) {
             _lastFireTime = Time.time;
-            GameObject bullet = Instantiate(_blastPrefab, transform.position + new Vector3(0,-bodyOffset,0), new Quaternion());
+            GameObject bullet = Instantiate(_blastPrefab, _center.position, new Quaternion());
             bullet.GetComponent<Rigidbody2D>().velocity = _blastSpeed * GetComponent<EnemyMovement>().targetDirection;
         }
     }

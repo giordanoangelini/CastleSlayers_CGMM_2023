@@ -11,12 +11,11 @@ public class ControlPlayerAwareness : MonoBehaviour
     [SerializeField] private float _playerAwarenessDistance;
     [SerializeField] private float _playerShootDistance;
     [SerializeField] private float _playerAttackDistance;
-    private float _bodyOffset;
+    [SerializeField] private Transform _center;
     private Transform _player;
 
     private void Awake() {
         _player = FindObjectOfType<PlayerMovement>().transform;
-        _bodyOffset = GetComponent<EnemyAttack>().bodyOffset;
     }
 
     void FixedUpdate() {
@@ -34,13 +33,13 @@ public class ControlPlayerAwareness : MonoBehaviour
             for (int i = -10; i <= 10; i++) {
                 
                 Debug.DrawRay(
-                transform.position + new Vector3(0, -_bodyOffset, 0),
+                _center.position,
                 (Quaternion.AngleAxis(i*10, transform.forward) * dir) * _playerAwarenessDistance,
                 Color.red
                 );
 
                 RaycastHit2D[] hit = Physics2D.RaycastAll(
-                    transform.position + new Vector3(0, -_bodyOffset, 0),
+                    _center.position,
                     (Quaternion.AngleAxis(i*10, transform.forward) * dir),
                     _playerAwarenessDistance
                 );
@@ -61,7 +60,7 @@ public class ControlPlayerAwareness : MonoBehaviour
                 }
             }
             
-            Vector2 enemyToPlayerDistance = _player.position - transform.position;
+            Vector2 enemyToPlayerDistance = _player.position - _center.position;
             DirectionToPlayer = enemyToPlayerDistance.normalized;
 
             if (AwareOfPlayer && enemyToPlayerDistance.magnitude <= _playerShootDistance) ShootPlayer = true;
