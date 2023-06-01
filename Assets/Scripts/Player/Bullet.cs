@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Bullet : MonoBehaviour
 {
     private float _bulletLife = 2f;
-    private void Start() {
+    private void Awake() {
         Destroy(gameObject, _bulletLife);
     }
     private void OnTriggerEnter2D(Collider2D collision) {

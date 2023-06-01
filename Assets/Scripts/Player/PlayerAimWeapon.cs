@@ -14,9 +14,8 @@ public class PlayerAimWeapon : MonoBehaviour {
        _hands = transform.Find("Hands");
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         HandleAiming();
-        //HandleShooting();
     }
 
     private void HandleAiming() {

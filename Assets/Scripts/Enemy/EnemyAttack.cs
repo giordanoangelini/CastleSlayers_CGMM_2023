@@ -25,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
         _lastFireTime = Time.time;
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         CheckAttack();
     }
 

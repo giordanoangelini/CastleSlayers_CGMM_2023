@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
         _controlPlayerAwareness = GetComponent<ControlPlayerAwareness>();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         GameUtils.MoveAnimations(_rigidBody, _animator);
         GameUtils.FlippingCharacterOnMove(_rigidBody);
         UpdateTragetDirection();

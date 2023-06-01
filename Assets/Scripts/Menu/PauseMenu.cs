@@ -5,11 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject _pauseUI;
+    private GameObject _pauseUI;
 
     private void Awake() {
+        _pauseUI = transform.Find("PauseMenu").gameObject;
         Cursor.visible = true;
     }
+
+    private void FixedUpdate() {
+        if (Input.GetKeyDown(KeyCode.Escape)) Pause();    
+    }
+
     public void Resume() {
         _pauseUI.SetActive(false);
         Time.timeScale = 1f;

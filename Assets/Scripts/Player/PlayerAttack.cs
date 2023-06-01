@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
         DetectWeapon();
     }
     
-    private void Update() {
+    private void FixedUpdate() {
         if (_fireContinuously) {
             if (Time.time - _flowStartTime < _maxFlowTime) FireBullet();
             else _fireContinuously = false;
