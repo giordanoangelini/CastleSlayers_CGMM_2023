@@ -51,19 +51,18 @@ public class PlayerAttack : MonoBehaviour
 
     private void FireBullet() {
         _lastFireTime = Time.time;
+        _weapon.GetComponent<Animator>().SetTrigger("shoot");
         GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
 
     private void FireMultipleBullets() {
         _lastFireTime = Time.time;
-        Vector3[] directions = new Vector3[3];
-        directions[0] = _fireSpot.transform.right;
-        directions[1] = _fireSpot.transform.right + new Vector3(0.2f, 0.2f, 0);
-        directions[2] = _fireSpot.transform.right - new Vector3(0.2f, 0.2f, 0);
-        for (int i = 0; i < 3; i++) {
+        _weapon.GetComponent<Animator>().SetTrigger("shoot");
+        Vector3 dir = _fireSpot.transform.right;
+        foreach (int i in new int[]{-1,0,1}) {
             GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
-            bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * directions[i];
+            bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * (Quaternion.AngleAxis(i*10, transform.forward) * dir);
         }
     }
 

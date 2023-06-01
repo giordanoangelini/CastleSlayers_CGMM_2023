@@ -31,7 +31,7 @@ public class ControlPlayerAwareness : MonoBehaviour
             else dir = transform.right;
 
             List<string> nearest = new List<string>();
-            for (int i = -10; i < 10; i++) {
+            for (int i = -10; i <= 10; i++) {
                 
                 Debug.DrawRay(
                 transform.position + new Vector3(0, -_bodyOffset, 0),
