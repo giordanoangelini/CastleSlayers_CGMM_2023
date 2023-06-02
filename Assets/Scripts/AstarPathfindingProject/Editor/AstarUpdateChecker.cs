@@ -4,11 +4,11 @@ using UnityEditor;
 using UnityEngine.Networking;
 #endif
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; 
 
 namespace Pathfinding {
 	/// <summary>Handles update checking for the A* Pathfinding Project</summary>
-	[InitializeOnLoad]
+	//[InitializeOnLoad]
 	public static class AstarUpdateChecker {
 #if UNITY_2018_1_OR_NEWER
 		/// <summary>Used for downloading new version information</summary>
