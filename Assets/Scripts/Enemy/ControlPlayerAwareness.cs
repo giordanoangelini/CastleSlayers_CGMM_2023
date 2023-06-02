@@ -19,7 +19,7 @@ public class ControlPlayerAwareness : MonoBehaviour
 
     private void Awake() {
         _player = FindObjectOfType<PlayerMovement>().transform;
-        _seeker = transform.Find("Center").GetComponent<Seeker>();
+        _seeker = _center.GetComponent<Seeker>();
     }
 
     void FixedUpdate() {
