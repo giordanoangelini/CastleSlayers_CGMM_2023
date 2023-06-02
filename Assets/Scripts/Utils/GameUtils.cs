@@ -59,10 +59,10 @@ public static class GameUtils
         return new Vector2(position_x + attack_range, position_y + attack_range);
     }
 
-    public static void Float(Transform visual) {
+    public static void Float(Transform visual, float pulsation = 8f, float amplitude = 0.01f, float phase = 0f) {
         visual.position = new Vector3(
             visual.position.x, 
-            visual.position.y + Mathf.Sin(Time.time * 8) * 0.01f, 
+            visual.position.y + Mathf.Sin(Time.time * pulsation + phase) * amplitude, 
             0
         );
     }
