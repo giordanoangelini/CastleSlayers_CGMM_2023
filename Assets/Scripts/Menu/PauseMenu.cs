@@ -9,7 +9,6 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake() {
         _pauseUI = transform.Find("PauseMenu").gameObject;
-        Cursor.visible = true;
     }
 
     private void FixedUpdate() {
@@ -17,11 +16,13 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
+        Cursor.visible = true;
         _pauseUI.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void Pause() {
+        Cursor.visible = true;
         _pauseUI.SetActive(true);
         Time.timeScale = 0f;
     }
