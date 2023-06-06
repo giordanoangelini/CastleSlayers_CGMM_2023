@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,12 +17,15 @@ public class PlayerAttack : MonoBehaviour
     private float _maxFlowTime = 3f;
     private float _bulletSpeed = 20f;
     private bool _dead = false;
+    private GameObject _gameOverUI;
 
     
     private void Awake() {
         _hands = transform.Find("Hands");
         _lastFireTime = Time.time;
         DetectWeapon();
+
+        _gameOverUI = GameObject.Find("GameOverMenu");
     }
     
     private void FixedUpdate() {
@@ -111,6 +115,11 @@ public class PlayerAttack : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transform.Find("Hands").gameObject.SetActive(false);
         GameUtils.DieAnimations(gameObject, GetComponent<Animator>());
-        Destroy(gameObject, 3f);   
+
+        Destroy(gameObject, 2f);    
+    }
+
+    private void OnDestroy() {
+        GameObject.Find("Pause").GetComponent<PauseMenu>().GameOver();
     }
 }
