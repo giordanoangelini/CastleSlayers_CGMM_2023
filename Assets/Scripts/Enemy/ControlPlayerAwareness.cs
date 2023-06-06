@@ -9,6 +9,7 @@ public class ControlPlayerAwareness : MonoBehaviour
     public bool AttackPlayer {get; private set;}
     public bool ShootPlayer {get; private set;}
     public Vector2 DirectionToPlayer {get; private set;}
+    public Vector2 DirectionToShoot {get; private set;}
     [SerializeField] private float _playerAwarenessDistance;
     [SerializeField] private float _playerShootDistance;
     [SerializeField] private float _playerAttackDistance;
@@ -61,7 +62,7 @@ public class ControlPlayerAwareness : MonoBehaviour
             );
 
             foreach (RaycastHit2D coll in hit) {
-                string coll_name = coll.collider.name.ToLower();
+                string coll_name = coll.collider.tag.ToLower();
                 if(coll_name.Contains("wall") || coll_name.Contains("player")) {
                     nearest.Add(coll_name);
                     break;
@@ -87,7 +88,8 @@ public class ControlPlayerAwareness : MonoBehaviour
     }
 
     private void CheckDistances() {
-        Vector2 enemyToPlayerDistance = _player.position - _center.position;
+        Vector2 enemyToPlayerDistance = _player.Find("Hands").position - _center.position;
+        DirectionToShoot = enemyToPlayerDistance.normalized;
 
         if (AwareOfPlayer && enemyToPlayerDistance.magnitude <= _playerShootDistance) ShootPlayer = true;
         else ShootPlayer = false;

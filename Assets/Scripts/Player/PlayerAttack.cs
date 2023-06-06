@@ -73,7 +73,7 @@ public class PlayerAttack : MonoBehaviour
             _weaponParameters.attackRange
         );
         foreach (Collider2D enemy in hitEnemies) {
-            if (enemy.name.ToLower().Contains("enemy")) {
+            if (enemy.tag.ToLower().Contains("enemy")) {
                 enemy.GetComponent<EnemyAttack>().EnemyDeath(); 
             }
         }

@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 498161770485217364}
   m_Layer: 0
   m_Name: Enemy_1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ Transform:
   m_Children:
   - {fileID: 6511305640556340837}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &386685401281088230
 Rigidbody2D:
