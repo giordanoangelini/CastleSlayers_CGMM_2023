@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     private GameObject _pauseUI;
+    private GameObject _gameOverUI;
 
     private void Awake() {
         _pauseUI = transform.Find("PauseMenu").gameObject;
+        _gameOverUI = transform.Find("GameOverMenu").gameObject;
     }
 
     private void FixedUpdate() {
@@ -35,6 +37,19 @@ public class PauseMenu : MonoBehaviour
     public void Quit() {
         Debug.Log("Bye");
         Application.Quit();
+    }
+
+    public void GameOver() {
+        Cursor.visible = true;
+        Debug.Log("arrivato");
+        _gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Replay() {
+        Cursor.visible = true;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
@@ -19,11 +20,11 @@ public class ControlPlayerAwareness : MonoBehaviour
     private Seeker _seeker;
 
     private void Awake() {
-        _player = FindObjectOfType<PlayerMovement>().transform;
         _seeker = _center.GetComponent<Seeker>();
     }
 
     void FixedUpdate() {
+        if (!_player) _player = FindObjectOfType<PlayerMovement>().transform;
         CheckPlayer();
     }
 
