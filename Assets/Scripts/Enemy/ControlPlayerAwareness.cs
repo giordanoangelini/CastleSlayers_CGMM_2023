@@ -31,7 +31,7 @@ public class ControlPlayerAwareness : MonoBehaviour
     private void CheckPlayer() {
         if (_player && _player.GetComponent<PlayerMovement>().enabled) {
 
-            EnemySeePlayer();
+            if (!AwareOfPlayer)EnemySeePlayer();
             if (AwareOfPlayer) FindPath();
             CheckDistances();
 
@@ -48,17 +48,17 @@ public class ControlPlayerAwareness : MonoBehaviour
         else dir = transform.right;
 
         List<string> nearest = new List<string>();
-        for (int i = -10; i <= 10; i++) {
+        for (int i = -20; i <= 20; i++) {
             
             Debug.DrawRay(
             _center.position,
-            (Quaternion.AngleAxis(i*10, transform.forward) * dir) * _playerAwarenessDistance,
+            (Quaternion.AngleAxis(i*5, transform.forward) * dir) * _playerAwarenessDistance,
             Color.red
             );
 
             RaycastHit2D[] hit = Physics2D.RaycastAll(
                 _center.position,
-                (Quaternion.AngleAxis(i*10, transform.forward) * dir),
+                (Quaternion.AngleAxis(i*5, transform.forward) * dir),
                 _playerAwarenessDistance
             );
 
