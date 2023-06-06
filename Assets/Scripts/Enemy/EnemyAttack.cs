@@ -43,7 +43,7 @@ public class EnemyAttack : MonoBehaviour
                 _attackRange
             );
             foreach (Collider2D player in hitPlayers) {
-                if (player.name.ToLower().Contains("player")) {
+                if (player.tag.ToLower().Contains("player")) {
                     Debug.Log("preso");
                     //player.GetComponent<PlayerAttack>().PlayerDeath();
                 }
@@ -59,7 +59,7 @@ public class EnemyAttack : MonoBehaviour
         if (_controlPlayerAwareness.ShootPlayer) {
             _lastFireTime = Time.time;
             GameObject bullet = Instantiate(_blastPrefab, _center.position, new Quaternion());
-            bullet.GetComponent<Rigidbody2D>().velocity = _blastSpeed * GetComponent<EnemyMovement>().targetDirection;
+            bullet.GetComponent<Rigidbody2D>().velocity = _blastSpeed * _controlPlayerAwareness.DirectionToShoot;
         }
     }
 
@@ -69,7 +69,6 @@ public class EnemyAttack : MonoBehaviour
                 Attack();
                 break;
             case AttackType.shoot:
-                GameUtils.Float(transform);
                 if (CanAttack()) FireBlast();
                 break;
             default: break;
