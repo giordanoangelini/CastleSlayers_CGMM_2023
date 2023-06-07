@@ -41,7 +41,6 @@ public class PauseMenu : MonoBehaviour
 
     public void GameOver() {
         Cursor.visible = true;
-        Debug.Log("arrivato");
         _gameOverUI.SetActive(true);
         Time.timeScale = 0f;
     }
