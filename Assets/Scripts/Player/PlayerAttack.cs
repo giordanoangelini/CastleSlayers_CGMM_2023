@@ -11,8 +11,8 @@ public class PlayerAttack : MonoBehaviour
     private Transform _weapon;
     private Transform _fireSpot;
 
-    public bool _fireContinuously {get; set;}
-    public float _lastFireTime {get; set;}
+    public bool fireContinuously {get; set;}
+    public float lastFireTime {get; set;}
     private float _flowStartTime;
     private float _maxFlowTime = 3f;
     private float _bulletSpeed = 20f;
@@ -23,21 +23,21 @@ public class PlayerAttack : MonoBehaviour
     private void Awake() {
         _hands = transform.Find("Hands");
         _hands.Find(GameUtils.weapon).gameObject.SetActive(true);
-        _lastFireTime = Time.time;
+        lastFireTime = Time.time;
         DetectWeapon();
 
         _gameOverUI = GameObject.Find("GameOverMenu");
     }
     
     private void FixedUpdate() {
-        if (_fireContinuously) {
+        if (fireContinuously) {
             if (Time.time - _flowStartTime < _maxFlowTime) FireBullet();
-            else _fireContinuously = false;
+            else fireContinuously = false;
         }
     }
 
     private bool CanAttack() {
-        float timeSinceLastFire = Time.time - _lastFireTime;
+        float timeSinceLastFire = Time.time - lastFireTime;
         if (timeSinceLastFire >= _weaponParameters.timeBetweenAttacks && !_dead) return true;
         return false;
     }
@@ -55,14 +55,14 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void FireBullet() {
-        _lastFireTime = Time.time;
+        lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
         GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
 
     private void FireMultipleBullets() {
-        _lastFireTime = Time.time;
+        lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
         Vector3 dir = _fireSpot.transform.right;
         foreach (int i in new int[]{-1,0,1}) {
@@ -100,7 +100,7 @@ public class PlayerAttack : MonoBehaviour
             case WeaponParameters.FireMethods.non_stop:
                 if (CanAttack()) {
                     _flowStartTime = Time.time;
-                    _fireContinuously = inputValue.isPressed;
+                    fireContinuously = inputValue.isPressed;
                 }
                 break;
             case WeaponParameters.FireMethods.white:
