@@ -18,19 +18,18 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
-        Cursor.visible = true;
-        _pauseUI.SetActive(false);
         Time.timeScale = 1f;
+        Cursor.visible = false;
+        _pauseUI.SetActive(false);
     }
 
     public void Pause() {
+        Time.timeScale = 0f;
         Cursor.visible = true;
         _pauseUI.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void MainMenu() {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -40,14 +39,14 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void GameOver() {
+        Time.timeScale = 0f;
         Cursor.visible = true;
         _gameOverUI.SetActive(true);
-        Time.timeScale = 0f;
     }
 
     public void Replay() {
-        Cursor.visible = true;
         Time.timeScale = 1f;
+        Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

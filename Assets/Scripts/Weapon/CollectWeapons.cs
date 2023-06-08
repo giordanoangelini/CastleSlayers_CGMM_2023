@@ -14,6 +14,7 @@ public class CollectWeapons : MonoBehaviour
             DeactivateAll(playerHands);
             GameObject newWeapon = playerHands.Find(gameObject.tag).gameObject;
             newWeapon.gameObject.SetActive(true);
+            GameUtils.weapon = newWeapon.tag;
             playerHands.GetComponentInParent<PlayerAttack>()._lastFireTime = Time.time - newWeapon.GetComponent<WeaponParameters>().timeBetweenAttacks;
             playerHands.GetComponentInParent<PlayerAttack>()._fireContinuously = false;
             Destroy(gameObject);

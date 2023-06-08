@@ -8,6 +8,9 @@ public static class GameUtils
     private static float _epsilon = 0.05f;
     private static Vector3 _mousePos;
 
+    public static string character = "Blake";
+    public static string weapon = "weapon_1";
+
     public static void FlippingCharacterOnMove(Rigidbody2D rigidbody) {
         Vector3 _currentScale = rigidbody.transform.localScale;
         if (rigidbody.velocity.x * _currentScale.x < 0) {
