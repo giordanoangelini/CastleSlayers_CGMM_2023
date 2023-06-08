@@ -5,16 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private string _defaultChar = "Blake";
-    private string _defaultWeapon = "weapon_1";
-
     private void Awake() {
         Cursor.visible = true;
-        PlayerPrefs.SetString("character", _defaultChar);
-        PlayerPrefs.SetString("weapon", _defaultWeapon);
     }
     public void PlayGame() {
-       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
+        Cursor.visible = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame() {
@@ -31,7 +28,7 @@ public class MainMenu : MonoBehaviour
         string name = prefs.Split(";")[0];
         string weapon = prefs.Split(";")[1];
         transform.Find(name).gameObject.GetComponent<RectTransform>().localScale = selected;
-        if(PlayerPrefs.GetString("character") != name) PlayerPrefs.SetString("character", name);
-        if(PlayerPrefs.GetString("weapon") != weapon) PlayerPrefs.SetString("weapon", weapon);
+        GameUtils.character = name;
+        GameUtils.weapon = weapon;
     }
 }

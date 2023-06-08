@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
     
     private void Awake() {
         _hands = transform.Find("Hands");
+        _hands.Find(GameUtils.weapon).gameObject.SetActive(true);
         _lastFireTime = Time.time;
         DetectWeapon();
 
