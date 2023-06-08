@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFollowing : MonoBehaviour
 {
     [SerializeField] GameObject[] players;
-    public Transform target {get; private set;}
+    public Transform target;
     private Transform _playerSpot;
 
     private void Awake() {

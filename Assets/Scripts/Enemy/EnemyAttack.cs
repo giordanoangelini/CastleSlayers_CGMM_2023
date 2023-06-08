@@ -44,7 +44,6 @@ public class EnemyAttack : MonoBehaviour
             );
             foreach (Collider2D player in hitPlayers) {
                 if (player.tag.ToLower().Contains("player")) {
-                    Debug.Log("preso");
                     player.GetComponent<PlayerAttack>().PlayerDeath();
                 }
             }
