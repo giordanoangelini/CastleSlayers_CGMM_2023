@@ -13,7 +13,6 @@ public class Blast : MonoBehaviour
 
         if (collision.tag.ToLower().Contains("player")) {
             Destroy(gameObject);
-            Debug.Log("preso");
             collision.GetComponent<PlayerAttack>().PlayerDeath();
         }
 

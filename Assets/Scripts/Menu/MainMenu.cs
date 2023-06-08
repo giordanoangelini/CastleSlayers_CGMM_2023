@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString("weapon", _defaultWeapon);
     }
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame() {
@@ -31,9 +31,7 @@ public class MainMenu : MonoBehaviour
         string name = prefs.Split(";")[0];
         string weapon = prefs.Split(";")[1];
         transform.Find(name).gameObject.GetComponent<RectTransform>().localScale = selected;
-        PlayerPrefs.SetString("character", name);
-        PlayerPrefs.SetString("weapon", weapon);
-        Debug.Log(PlayerPrefs.GetString("character"));
-        Debug.Log(PlayerPrefs.GetString("weapon"));
+        if(PlayerPrefs.GetString("character") != name) PlayerPrefs.SetString("character", name);
+        if(PlayerPrefs.GetString("weapon") != weapon) PlayerPrefs.SetString("weapon", weapon);
     }
 }
