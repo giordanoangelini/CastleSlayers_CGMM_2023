@@ -15,8 +15,8 @@ public class CollectWeapons : MonoBehaviour
             GameObject newWeapon = playerHands.Find(gameObject.tag).gameObject;
             newWeapon.gameObject.SetActive(true);
             GameUtils.weapon = newWeapon.tag;
-            playerHands.GetComponentInParent<PlayerAttack>()._lastFireTime = Time.time - newWeapon.GetComponent<WeaponParameters>().timeBetweenAttacks;
-            playerHands.GetComponentInParent<PlayerAttack>()._fireContinuously = false;
+            playerHands.GetComponentInParent<PlayerAttack>().lastFireTime = Time.time - newWeapon.GetComponent<WeaponParameters>().timeBetweenAttacks;
+            playerHands.GetComponentInParent<PlayerAttack>().fireContinuously = false;
             Destroy(gameObject);
         }
     }

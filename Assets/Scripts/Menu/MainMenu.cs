@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private Vector3 _selected = new Vector3(6.5f,6.5f,6.5f);
+    private Vector3 _unselected = new Vector3(5f,5f,5f);
+    private string[] _players = new string[]{"Blake", "Spike", "Pink"};
     private void Awake() {
-        Cursor.visible = true;
+        DeselectAll();
+        SelectPlayer(GameUtils.character);
     }
     public void PlayGame() {
         Time.timeScale = 1f;
-        Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -19,15 +22,21 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void SelectChar(string prefs) {
-        Vector3 selected = new Vector3(6.5f,6.5f,6.5f);
-        Vector3 unselected = new Vector3(5f,5f,5f);
-        foreach (string button in new string[]{"Blake", "Spike", "Pink"}) {
-            transform.Find(button).gameObject.GetComponent<RectTransform>().localScale = unselected;
+    private void DeselectAll() {
+        foreach (string button in _players) {
+            transform.Find(button).gameObject.GetComponent<RectTransform>().localScale = _unselected;
         }
+    }
+
+    private void SelectPlayer(string name) {
+        transform.Find(name).gameObject.GetComponent<RectTransform>().localScale = _selected;
+    }
+
+    public void SelectChar(string prefs) {
+        DeselectAll();
         string name = prefs.Split(";")[0];
         string weapon = prefs.Split(";")[1];
-        transform.Find(name).gameObject.GetComponent<RectTransform>().localScale = selected;
+        SelectPlayer(name);
         GameUtils.character = name;
         GameUtils.weapon = weapon;
     }
