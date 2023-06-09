@@ -7,9 +7,11 @@ public class CameraFollowing : MonoBehaviour
 {
     public Transform _target;
     void Update() {
-        if (!_target) _target = FindObjectOfType<PlayerMovement>().transform;
-        else {
-            transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
+        if (FindObjectOfType<PlayerMovement>()) {
+            if (!_target) _target = FindObjectOfType<PlayerMovement>().transform;
+            else {
+                transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
+            }
         }
     }
 }

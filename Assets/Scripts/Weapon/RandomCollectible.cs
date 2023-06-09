@@ -26,6 +26,7 @@ public class RandomCollectible : MonoBehaviour
     void Awake()
     {   
         Instantiate(getRandomWeapon(), transform.position, Quaternion.identity, transform.parent);
+        Destroy(gameObject);
         //InvokeRepeating("getRandomWeapon", 0f, 2f);
     }
     

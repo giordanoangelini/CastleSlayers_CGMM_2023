@@ -40,7 +40,6 @@ public static class GameUtils
     }
 
     public static void MoveAnimations(Rigidbody2D rigidbody, Animator animator) {
-        // Switchin moving/idle animations
         if (Mathf.Abs(rigidbody.velocity.x) > _epsilon || Mathf.Abs(rigidbody.velocity.y) > _epsilon) {
             animator.ResetTrigger("stop");
             animator.SetTrigger("move");

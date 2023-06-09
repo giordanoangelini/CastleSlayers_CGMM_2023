@@ -24,22 +24,21 @@ public class ControlPlayerAwareness : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (!_player) _player = FindObjectOfType<PlayerMovement>().transform;
-        CheckPlayer();
-    }
-
-    private void CheckPlayer() {
-        if (_player && _player.GetComponent<PlayerMovement>().enabled) {
-
-            if (!AwareOfPlayer)EnemySeePlayer();
-            if (AwareOfPlayer) FindPath();
-            CheckDistances();
-
+        if (FindObjectOfType<PlayerMovement>() & FindObjectOfType<PlayerMovement>().enabled) {
+            if (!_player) _player = FindObjectOfType<PlayerMovement>().transform;
+            else CheckPlayer();
         } else {
             AwareOfPlayer = false;
             AttackPlayer = false;
             ShootPlayer = false;
         }
+        
+    }
+
+    private void CheckPlayer() {
+        if (!AwareOfPlayer) EnemySeePlayer();
+        if (AwareOfPlayer) FindPath();
+        CheckDistances();
     }
 
     private void EnemySeePlayer() {
