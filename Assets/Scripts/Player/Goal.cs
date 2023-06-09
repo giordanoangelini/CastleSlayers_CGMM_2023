@@ -6,12 +6,18 @@ using UnityEngine.Tilemaps;
 
 public class Goal : MonoBehaviour
 {
+    private void Awake() {
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
+    }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag.ToLower().Contains("player")) {
-            //Debug.Log(SceneManager.sceneCount);
-            //if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCount - 1) GameObject.Find("Pause").GetComponent<PauseMenu>().YouWon();
-            //else 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)   
+                GameObject.Find("Pause").GetComponent<PauseMenu>().YouWon();
+            else {
+                Time.timeScale = 0f;
+                GameUtils.isInstantiated = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 }

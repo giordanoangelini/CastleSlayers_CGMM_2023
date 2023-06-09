@@ -7,13 +7,11 @@ public class MainMenu : MonoBehaviour
 {
     private Vector3 _selected = new Vector3(6.5f,6.5f,6.5f);
     private Vector3 _unselected = new Vector3(5f,5f,5f);
-    private string[] _players = {"Blake", "Spike", "Pink"};
     private void Awake() {
         DeselectAll();
         SelectPlayer(GameUtils.character);
     }
     public void PlayGame() {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -23,8 +21,8 @@ public class MainMenu : MonoBehaviour
     }
 
     private void DeselectAll() {
-        foreach (string button in _players) {
-            transform.Find(button).gameObject.GetComponent<RectTransform>().localScale = _unselected;
+        foreach (Transform button in transform) {
+            if (button.tag == "player") button.GetComponent<RectTransform>().localScale = _unselected;
         }
     }
 

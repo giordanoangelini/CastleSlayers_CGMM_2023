@@ -7,6 +7,9 @@ public static class GameUtils
 {
     private static float _epsilon = 0.05f;
     private static Vector3 _mousePos;
+    public static GameObject player;
+    public static bool isPlayerDead = false;
+    public static bool isInstantiated = false;
 
     public static string character = "Blake";
     public static string weapon = "weapon_1";

@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    private string[] _utilities = {"Crosshair", "Recharge"};
-    private void Awake() {
+    [SerializeField] private GameObject[] _players;
+    private void Start() {
         foreach (Transform player in transform) {
-            if (GameUtils.character == player.name) player.gameObject.SetActive(true);
-            else if (!_utilities.Contains(player.name)) Destroy(player.gameObject);
+            if (GameUtils.character == player.name){
+                player.gameObject.SetActive(true);
+                GameUtils.player = player.gameObject;
+            }
         }
+        GameUtils.isInstantiated = true;
+        Time.timeScale = 1f;
     }
 }
