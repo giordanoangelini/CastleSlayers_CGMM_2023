@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class CameraFollowing : MonoBehaviour
 {
     public Transform _target;
-    void Update() {
-        if (FindObjectOfType<PlayerMovement>()) {
-            if (!_target) _target = FindObjectOfType<PlayerMovement>().transform;
-            else {
-                transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
-            }
-        }
+
+    IEnumerator Start() {
+        yield return new WaitUntil(() => GameUtils.isInstantiated);
+        _target = GameUtils.player.transform;
+    }
+    private void FixedUpdate() {
+        if (_target) transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
     }
 }

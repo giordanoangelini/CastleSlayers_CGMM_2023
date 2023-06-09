@@ -5,36 +5,24 @@ using UnityEngine.UI;
 
 public class WeaponRecharge : MonoBehaviour
 {
-    public Transform _target;
     private float _offset = 0.3f;
     private Slider _slider;
-    private PlayerAttack _playerAttack;
+    public Transform _player;
     private WeaponParameters _weaponParameters;
 
-    private void Awake() {
+    IEnumerator Start() {
+        yield return new WaitUntil(() => GameUtils.isInstantiated);
+        _player = GameUtils.player.transform;
         _slider = GetComponent<Slider>();
         _slider.minValue = -0.1f;
+        _slider.maxValue = _player.GetComponent<PlayerAttack>()._weaponParameters.timeBetweenAttacks;
     }
-    void FixedUpdate() {
-        Position();
-        Value();
-    }
+    
+    private void FixedUpdate() {
+        if (_player) {
+            transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y + _offset, transform.position.z);
+            _slider.value = Time.time - _player.GetComponent<PlayerAttack>().lastFireTime;
 
-    public void Position() {
-        if (FindObjectOfType<PlayerMovement>()) {
-            if (!_target) _target = FindObjectOfType<PlayerMovement>().transform;
-            else {
-                transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y + _offset, transform.position.z);
-            }
         }
-    }
-
-    public void Value() {
-        if (FindObjectOfType<WeaponParameters>() != _weaponParameters)
-            _slider.maxValue = FindObjectOfType<WeaponParameters>().timeBetweenAttacks;
-        if (FindObjectOfType<PlayerAttack>() != _playerAttack) {
-            _playerAttack = FindObjectOfType<PlayerAttack>();
-        }
-        _slider.value = Time.time - _playerAttack.lastFireTime;
     }
 }

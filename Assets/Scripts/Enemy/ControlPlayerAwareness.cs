@@ -19,20 +19,19 @@ public class ControlPlayerAwareness : MonoBehaviour
     private Path _path;
     private Seeker _seeker;
 
-    private void Awake() {
+    IEnumerator Start() {
         _seeker = _center.GetComponent<Seeker>();
+        yield return new WaitUntil(() => GameUtils.isInstantiated);
+        _player = GameUtils.player.transform;
     }
 
     void FixedUpdate() {
-        if (FindObjectOfType<PlayerMovement>() & FindObjectOfType<PlayerMovement>().enabled) {
-            if (!_player) _player = FindObjectOfType<PlayerMovement>().transform;
-            else CheckPlayer();
-        } else {
+        if (_player & _player.GetComponent<PlayerMovement>().enabled) CheckPlayer();
+        else {
             AwareOfPlayer = false;
             AttackPlayer = false;
             ShootPlayer = false;
         }
-        
     }
 
     private void CheckPlayer() {

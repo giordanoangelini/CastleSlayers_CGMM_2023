@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private WeaponParameters _weaponParameters;
+    public WeaponParameters _weaponParameters {get; private set;}
     private Transform _hands;
     private Transform _weapon;
     private Transform _fireSpot;
