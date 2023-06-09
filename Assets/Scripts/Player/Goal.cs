@@ -6,9 +6,6 @@ using UnityEngine.Tilemaps;
 
 public class Goal : MonoBehaviour
 {
-    private void Awake() {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-    }
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag.ToLower().Contains("player")) {
             if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)   
