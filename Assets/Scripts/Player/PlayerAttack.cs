@@ -17,7 +17,6 @@ public class PlayerAttack : MonoBehaviour
     private float _maxFlowTime = 3f;
     private float _bulletSpeed = 20f;
     private bool _dead = false;
-    private GameObject _gameOverUI;
 
     
     private void Awake() {
@@ -25,8 +24,6 @@ public class PlayerAttack : MonoBehaviour
         _hands.Find(GameUtils.weapon).gameObject.SetActive(true);
         lastFireTime = Time.time;
         DetectWeapon();
-
-        _gameOverUI = GameObject.Find("GameOverMenu");
     }
     
     private void FixedUpdate() {

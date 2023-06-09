@@ -7,9 +7,11 @@ using UnityEngine.Tilemaps;
 public class Goal : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision) {
-
         if (collision.tag.ToLower().Contains("player")) {
-            SceneManager.LoadScene("Level_2");
+            //Debug.Log(SceneManager.sceneCount);
+            //if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCount - 1) GameObject.Find("Pause").GetComponent<PauseMenu>().YouWon();
+            //else 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

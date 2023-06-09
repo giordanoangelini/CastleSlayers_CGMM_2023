@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Awake() {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _animator = _rigidBody.GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
         _controlPlayerAwareness = GetComponent<ControlPlayerAwareness>();
         _lastFireTime = Time.time;
     }

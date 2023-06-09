@@ -7,10 +7,12 @@ public class PauseMenu : MonoBehaviour
 {
     private GameObject _pauseUI;
     private GameObject _gameOverUI;
+    private GameObject _youWonUI;
 
     private void Awake() {
         _pauseUI = transform.Find("PauseMenu").gameObject;
         _gameOverUI = transform.Find("GameOverMenu").gameObject;
+        _youWonUI = transform.Find("YouWonMenu").gameObject;
     }
 
     private void FixedUpdate() {
@@ -43,6 +45,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         _gameOverUI.SetActive(true);
+    }
+
+    public void YouWon() {
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        _youWonUI.SetActive(true);
     }
 
     public void Replay() {

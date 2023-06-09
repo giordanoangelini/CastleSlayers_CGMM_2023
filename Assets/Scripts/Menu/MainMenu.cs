@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     private Vector3 _selected = new Vector3(6.5f,6.5f,6.5f);
     private Vector3 _unselected = new Vector3(5f,5f,5f);
-    private string[] _players = new string[]{"Blake", "Spike", "Pink"};
+    private string[] _players = {"Blake", "Spike", "Pink"};
     private void Awake() {
         DeselectAll();
         SelectPlayer(GameUtils.character);

@@ -21,9 +21,11 @@ public class WeaponRecharge : MonoBehaviour
     }
 
     public void Position() {
-        if (!_target) _target = FindObjectOfType<PlayerMovement>().transform;
-        else {
-            transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y + _offset, transform.position.z);
+        if (FindObjectOfType<PlayerMovement>()) {
+            if (!_target) _target = FindObjectOfType<PlayerMovement>().transform;
+            else {
+                transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y + _offset, transform.position.z);
+            }
         }
     }
 
