@@ -58,6 +58,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         GameUtils.weapon = GameUtils.default_players[GameUtils.character];
         SceneManager.LoadScene("Level_1");
+        GameUtils.startTime = Time.time;
     }
 
 }

@@ -12,6 +12,8 @@ public static class GameUtils
     public static bool isPlayerDead = false;
     public static bool isInstantiated = false;
 
+    public static float startTime;
+
     public static Dictionary<string, string> default_players = new Dictionary<string, string>(){
         {"Blake","weapon_1"},
         {"Pink","weapon_4"},

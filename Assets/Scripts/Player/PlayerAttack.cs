@@ -106,12 +106,14 @@ public class PlayerAttack : MonoBehaviour
     }
 
     public void PlayerDeath() {
+        Camera.main.orthographicSize = 4;
         _dead = true;
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         _hands.gameObject.SetActive(false);
+        transform.parent.Find("Crosshair").gameObject.SetActive(false);
+        transform.parent.Find("Recharge").gameObject.SetActive(false);
         GameUtils.DeathAnimation(gameObject, GetComponent<Animator>());
-
         Destroy(gameObject, 2f);    
     }
 

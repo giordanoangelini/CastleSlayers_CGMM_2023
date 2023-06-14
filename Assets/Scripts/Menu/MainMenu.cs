@@ -12,7 +12,8 @@ public class MainMenu : MonoBehaviour
         SelectPlayer(name: GameUtils.character);
     }
     public void PlayGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Level_1");
+        GameUtils.startTime = Time.time;
     }
 
     public void QuitGame() {
