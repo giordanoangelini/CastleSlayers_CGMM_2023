@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,8 +18,8 @@ public static class GameUtils
         {"Spike","weapon_5"}
     };
 
-    public static string character = "Blake";
-    public static string weapon = "weapon_1";
+    public static string character = default_players.Keys.First();
+    public static string weapon = default_players[character];
     public static float lastFireTime = Time.time;
 
     public static void FlippingCharacterOnMove(Rigidbody2D rigidbody) {
