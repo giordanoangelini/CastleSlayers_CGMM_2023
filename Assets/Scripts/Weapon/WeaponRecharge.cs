@@ -18,10 +18,16 @@ public class WeaponRecharge : MonoBehaviour
     }
     
     private void FixedUpdate() {
-        if (_player) {
-            transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y + _offset, transform.position.z);
-            _slider.maxValue = _player.GetComponent<PlayerAttack>()._weaponParameters.timeBetweenAttacks;
-            _slider.value = Time.time - _player.GetComponent<PlayerAttack>().lastFireTime;
-        }
+        if (_player) UpdateSlider();
+    }
+
+    private void UpdateSlider() {
+        transform.position = new Vector3(
+            _player.transform.position.x,
+            _player.transform.position.y + _offset,
+            transform.position.z
+        );
+        _slider.maxValue = _player.GetComponent<PlayerAttack>().weaponParameters.timeBetweenAttacks;
+        _slider.value = Time.time - _player.GetComponent<PlayerAttack>().lastFireTime;
     }
 }

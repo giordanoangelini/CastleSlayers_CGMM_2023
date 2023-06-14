@@ -50,9 +50,9 @@ public class ControlPlayerAwareness : MonoBehaviour
         for (int i = -20; i <= 20; i++) {
             
             Debug.DrawRay(
-            _center.position,
-            (Quaternion.AngleAxis(i*5, transform.forward) * dir) * _playerAwarenessDistance,
-            Color.red
+                _center.position,
+                (Quaternion.AngleAxis(i*5, transform.forward) * dir) * _playerAwarenessDistance,
+                Color.red
             );
 
             RaycastHit2D[] hit = Physics2D.RaycastAll(
@@ -62,20 +62,15 @@ public class ControlPlayerAwareness : MonoBehaviour
             );
 
             foreach (RaycastHit2D coll in hit) {
-                string coll_name = coll.collider.tag.ToLower();
-                if(coll_name.Contains("wall") || coll_name.Contains("player")) {
-                    nearest.Add(coll_name);
+                string coll_tag = coll.collider.tag;
+                if (coll_tag == "wall" || coll_tag == "player") {
+                    nearest.Add(coll_tag);
                     break;
                 }
             }
         }
 
-        foreach (string str in nearest) {
-            if (str.Contains("player")) {
-                AwareOfPlayer = true;
-                break;
-            }
-        }
+        if (nearest.Contains("player")) AwareOfPlayer = true;
     }
 
     private void FindPath() {

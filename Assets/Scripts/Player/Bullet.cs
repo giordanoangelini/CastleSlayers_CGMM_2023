@@ -11,12 +11,12 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        if (collision.tag.ToLower().Contains("enemy")) {
+        if (collision.tag == "enemy") {
             Destroy(gameObject);
             collision.GetComponent<EnemyAttack>().EnemyDeath();
         }
 
-        if (collision.tag.ToLower().Contains("wall")) {
+        if (collision.tag == "wall") {
             Destroy(gameObject);
         }
     }

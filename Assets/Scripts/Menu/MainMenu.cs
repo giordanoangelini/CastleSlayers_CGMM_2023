@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     private Vector3 _unselected = new Vector3(5f,5f,5f);
     private void Awake() {
         DeselectAll();
-        SelectPlayer(GameUtils.character);
+        SelectPlayer(name: GameUtils.character);
     }
     public void PlayGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

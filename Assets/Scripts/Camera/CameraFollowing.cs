@@ -12,6 +12,14 @@ public class CameraFollowing : MonoBehaviour
         _target = GameUtils.player.transform;
     }
     private void FixedUpdate() {
-        if (_target) transform.position = new Vector3(_target.transform.position.x, _target.transform.position.y, transform.position.z);
+        if (_target) UpdatePosition();
+    }
+
+    private void UpdatePosition() {
+        transform.position = new Vector3(
+            _target.transform.position.x,
+            _target.transform.position.y,
+            transform.position.z
+        );
     }
 }
