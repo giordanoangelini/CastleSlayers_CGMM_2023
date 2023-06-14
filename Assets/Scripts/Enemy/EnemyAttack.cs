@@ -42,9 +42,9 @@ public class EnemyAttack : MonoBehaviour
                 _center.position,
                 _attackRange
             );
-            foreach (Collider2D player in hitPlayers) {
-                if (player.tag.ToLower().Contains("player")) {
-                    player.GetComponent<PlayerAttack>().PlayerDeath();
+            foreach (Collider2D coll in hitPlayers) {
+                if (coll.tag == "player") {
+                    coll.GetComponent<PlayerAttack>().PlayerDeath();
                 }
             }
         }
@@ -78,7 +78,7 @@ public class EnemyAttack : MonoBehaviour
         _dead = true;
         GetComponent<EnemyAttack>().enabled = false;
         GetComponent<EnemyMovement>().enabled = false;
-        GameUtils.DieAnimations(gameObject, GetComponent<Animator>());
+        GameUtils.DeathAnimation(gameObject, GetComponent<Animator>());
         Destroy(gameObject, 2f);
     }
 }

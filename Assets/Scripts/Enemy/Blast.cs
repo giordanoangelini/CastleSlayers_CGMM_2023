@@ -11,12 +11,12 @@ public class Blast : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        if (collision.tag.ToLower().Contains("player")) {
+        if (collision.tag == "player") {
             Destroy(gameObject);
             collision.GetComponent<PlayerAttack>().PlayerDeath();
         }
 
-        if (collision.tag.ToLower().Contains("wall")) {
+        if (collision.tag == "wall") {
             Destroy(gameObject);
         }
     }

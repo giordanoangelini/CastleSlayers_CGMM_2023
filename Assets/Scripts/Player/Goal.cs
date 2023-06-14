@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class Goal : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag.ToLower().Contains("player")) {
+        if (collision.tag == "player") {
             if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)   
                 GameObject.Find("Pause").GetComponent<PauseMenu>().YouWon();
             else {

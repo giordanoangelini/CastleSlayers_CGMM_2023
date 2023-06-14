@@ -52,7 +52,7 @@ public static class GameUtils
         }
     }
 
-    public static void DieAnimations(GameObject obj, Animator animator) {
+    public static void DeathAnimation(GameObject obj, Animator animator) {
         animator.SetTrigger("death");
         obj.GetComponent<Collider2D>().enabled = false;
     }

@@ -56,7 +56,7 @@ public class PauseMenu : MonoBehaviour
     public void Replay() {
         Time.timeScale = 1f;
         Cursor.visible = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Level_1");
     }
 
 }

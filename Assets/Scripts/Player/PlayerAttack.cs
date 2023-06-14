@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public WeaponParameters _weaponParameters {get; private set;}
+    public WeaponParameters weaponParameters {get; private set;}
     private Transform _hands;
     private Transform _weapon;
     private Transform _fireSpot;
@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool CanAttack() {
         float timeSinceLastFire = Time.time - lastFireTime;
-        if (timeSinceLastFire >= _weaponParameters.timeBetweenAttacks && !_dead) return true;
+        if (timeSinceLastFire >= weaponParameters.timeBetweenAttacks && !_dead) return true;
         return false;
     }
 
@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
                 _weapon = child;
             }
         }
-        _weaponParameters = _weapon.GetComponent<WeaponParameters>();
+        weaponParameters = _weapon.GetComponent<WeaponParameters>();
         if (_weapon.Find("FireSpot")) {
             _fireSpot = _weapon.Find("FireSpot");
         }
@@ -54,7 +54,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireBullet() {
         lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
-        GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
+        GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
 
@@ -63,7 +63,7 @@ public class PlayerAttack : MonoBehaviour
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
         Vector3 dir = _fireSpot.transform.right;
         foreach (int i in new int[]{-1,0,1}) {
-            GameObject bullet = Instantiate(_weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
+            GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
             bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * (Quaternion.AngleAxis(i*10, transform.forward) * dir);
         }
     }
@@ -72,22 +72,22 @@ public class PlayerAttack : MonoBehaviour
         _weapon.GetComponent<Animator>().SetTrigger("attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             _hands.position,
-            _weaponParameters.attackRange
+            weaponParameters.attackRange
         );
-        foreach (Collider2D enemy in hitEnemies) {
-            if (enemy.tag.ToLower().Contains("enemy")) {
-                enemy.GetComponent<EnemyAttack>().EnemyDeath(); 
+        foreach (Collider2D coll in hitEnemies) {
+            if (coll.tag == "enemy") {
+                coll.GetComponent<EnemyAttack>().EnemyDeath(); 
             }
         }
     }
 
     private void OnDrawGizmos() {
-        if (_hands) Gizmos.DrawWireSphere(_hands.position, _weaponParameters.attackRange);
+        if (_hands) Gizmos.DrawWireSphere(_hands.position, weaponParameters.attackRange);
     }
 
     private void OnFire(InputValue inputValue) {
         DetectWeapon();
-        switch (_weaponParameters.attackMethod) {
+        switch (weaponParameters.attackMethod) {
             case WeaponParameters.FireMethods.single:
                 if (CanAttack()) FireBullet();
                 break;
@@ -111,8 +111,8 @@ public class PlayerAttack : MonoBehaviour
         _dead = true;
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        transform.Find("Hands").gameObject.SetActive(false);
-        GameUtils.DieAnimations(gameObject, GetComponent<Animator>());
+        _hands.gameObject.SetActive(false);
+        GameUtils.DeathAnimation(gameObject, GetComponent<Animator>());
 
         Destroy(gameObject, 2f);    
     }

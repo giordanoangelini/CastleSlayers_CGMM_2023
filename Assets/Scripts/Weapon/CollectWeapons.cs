@@ -9,9 +9,9 @@ public class CollectWeapons : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag.ToLower().Contains("player")) {
+        if (other.tag == "player") {
             Transform playerHands = other.transform.Find("Hands");
-            DeactivateAll(playerHands);
+            DeactivateAll(parent: playerHands);
             GameObject newWeapon = playerHands.Find(gameObject.tag).gameObject;
             newWeapon.gameObject.SetActive(true);
             GameUtils.weapon = newWeapon.tag;
