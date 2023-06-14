@@ -56,6 +56,7 @@ public class PauseMenu : MonoBehaviour
     public void Replay() {
         Time.timeScale = 1f;
         Cursor.visible = false;
+        GameUtils.weapon = GameUtils.default_players[GameUtils.character];
         SceneManager.LoadScene("Level_1");
     }
 

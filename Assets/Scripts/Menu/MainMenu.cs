@@ -30,10 +30,9 @@ public class MainMenu : MonoBehaviour
         transform.Find(name).gameObject.GetComponent<RectTransform>().localScale = _selected;
     }
 
-    public void SelectChar(string prefs) {
+    public void SelectChar(string name) {
         DeselectAll();
-        string name = prefs.Split(";")[0];
-        string weapon = prefs.Split(";")[1];
+        string weapon = GameUtils.default_players[name];
         SelectPlayer(name);
         GameUtils.character = name;
         GameUtils.weapon = weapon;
