@@ -11,8 +11,15 @@ public static class GameUtils
     public static bool isPlayerDead = false;
     public static bool isInstantiated = false;
 
+    public static Dictionary<string, string> default_players = new Dictionary<string, string>(){
+        {"Blake","weapon_1"},
+        {"Pink","weapon_4"},
+        {"Spike","weapon_5"}
+    };
+
     public static string character = "Blake";
     public static string weapon = "weapon_1";
+    public static float lastFireTime = Time.time;
 
     public static void FlippingCharacterOnMove(Rigidbody2D rigidbody) {
         Vector3 _currentScale = rigidbody.transform.localScale;

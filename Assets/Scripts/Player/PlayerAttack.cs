@@ -12,7 +12,6 @@ public class PlayerAttack : MonoBehaviour
     private Transform _fireSpot;
 
     public bool fireContinuously {get; set;}
-    public float lastFireTime {get; set;}
     private float _flowStartTime;
     private float _maxFlowTime = 3f;
     private float _bulletSpeed = 20f;
@@ -22,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
     private void Awake() {
         _hands = transform.Find("Hands");
         _hands.Find(GameUtils.weapon).gameObject.SetActive(true);
-        lastFireTime = Time.time;
         DetectWeapon();
     }
     
@@ -34,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private bool CanAttack() {
-        float timeSinceLastFire = Time.time - lastFireTime;
+        float timeSinceLastFire = Time.time - GameUtils.lastFireTime;
         if (timeSinceLastFire >= weaponParameters.timeBetweenAttacks && !_dead) return true;
         return false;
     }
@@ -52,14 +50,14 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void FireBullet() {
-        lastFireTime = Time.time;
+        GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
         GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
 
     private void FireMultipleBullets() {
-        lastFireTime = Time.time;
+        GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
         Vector3 dir = _fireSpot.transform.right;
         foreach (int i in new int[]{-1,0,1}) {

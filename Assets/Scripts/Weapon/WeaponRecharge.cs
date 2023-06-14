@@ -28,6 +28,6 @@ public class WeaponRecharge : MonoBehaviour
             transform.position.z
         );
         _slider.maxValue = _player.GetComponent<PlayerAttack>().weaponParameters.timeBetweenAttacks;
-        _slider.value = Time.time - _player.GetComponent<PlayerAttack>().lastFireTime;
+        _slider.value = Time.time - GameUtils.lastFireTime;
     }
 }
