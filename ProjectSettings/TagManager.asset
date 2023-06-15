@@ -12,6 +12,7 @@ TagManager:
   - weapon_3
   - weapon_4
   - weapon_5
+  - door
   layers:
   - Default
   - TransparentFX
