@@ -64,7 +64,7 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
-    value: -1
+    value: 2
 --- !u!1 &7802022539678061529
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +81,7 @@ GameObject:
   - component: {fileID: 636810511099132156}
   - component: {fileID: -7946866846127361468}
   - component: {fileID: 4391066561570508250}
+  - component: {fileID: 8611681394665673582}
   m_Layer: 0
   m_Name: Enemy_3
   m_TagString: enemy
@@ -102,7 +103,7 @@ Transform:
   m_Children:
   - {fileID: 1763576857266006698}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6321220102826179356
 Rigidbody2D:
@@ -286,3 +287,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -3.813659}
   serializedVersion: 2
   m_Radius: 2.5616808
+--- !u!114 &8611681394665673582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7802022539678061529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806d1366f92344ce2983170e17dd7cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
