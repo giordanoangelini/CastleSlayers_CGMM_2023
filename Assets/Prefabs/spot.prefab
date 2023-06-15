@@ -46,12 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - prefab: {fileID: 1380305685567437939, guid: bf086aa371d544280974a46c98a54f54, type: 3}
-    weight: 4
+    weight: 3
   - prefab: {fileID: 5073869519686975994, guid: cce68ab834417466dbb0ee90b22ef765, type: 3}
     weight: 2
   - prefab: {fileID: 5968672856289460713, guid: fc5d58058ecbf40a3b8163781c5a82d1, type: 3}
-    weight: 1
+    weight: 2
   - prefab: {fileID: 5968672856289460713, guid: 4a662930b30c345ecae258806480f088, type: 3}
-    weight: 7
+    weight: 5
   - prefab: {fileID: 5968672856289460713, guid: a5151c700a8704624852a5bb8c2af4c9, type: 3}
-    weight: 6
+    weight: 5

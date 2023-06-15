@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -50,8 +52,13 @@ public class PauseMenu : MonoBehaviour
     public void YouWon() {
         Time.timeScale = 0f;
         Cursor.visible = true;
+        _youWonUI.transform.Find("TIME").GetComponent<Text>().text = FloatToTimestamp(Time.time-GameUtils.startTime);
         _youWonUI.SetActive(true);
     }
+
+    private string FloatToTimestamp(float time) {
+		return TimeSpan.FromSeconds(time).ToString(@"hh\:mm\:ss\,ff");
+	}
 
     public void Replay() {
         Time.timeScale = 1f;

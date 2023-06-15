@@ -10,7 +10,6 @@ public class GoalDoor : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
         if (enemies.Length == 0) {
             Destroy(gameObject);
-            Destroy(GameObject.FindGameObjectWithTag("door"));
         }
     }
 }

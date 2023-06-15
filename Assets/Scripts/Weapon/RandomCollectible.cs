@@ -15,19 +15,16 @@ public class RandomCollectible : MonoBehaviour
     public GameObject getRandomWeapon(){
         foreach (WeaponStruct weapon in weapons) {
             for (int i = 0; i < weapon.weight; i++) {
-                pickables.Add(weapon.prefab);
+                if (GameUtils.weapon != weapon.prefab.tag) pickables.Add(weapon.prefab);
             }
         }
         int picked = random.Next(0, pickables.Count);
-        Debug.Log(pickables[picked].name);
         return pickables[picked];
     }
 
-    void Awake()
-    {   
+    private void Awake() {   
         Instantiate(getRandomWeapon(), transform.position, Quaternion.identity, transform.parent);
         Destroy(gameObject);
-        //InvokeRepeating("getRandomWeapon", 0f, 2f);
     }
     
 }
