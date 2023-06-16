@@ -12,7 +12,6 @@ TagManager:
   - weapon_3
   - weapon_4
   - weapon_5
-  - door
   - non_walkable
   layers:
   - Default
