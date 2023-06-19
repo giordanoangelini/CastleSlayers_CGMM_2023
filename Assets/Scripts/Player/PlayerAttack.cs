@@ -17,6 +17,10 @@ public class PlayerAttack : MonoBehaviour
     private float _bulletSpeed = 20f;
     private bool _dead = false;
 
+    [SerializeField] private AudioSource _gunshot;
+    [SerializeField] private AudioSource _pompagun;
+    [SerializeField] private AudioSource _swoosh;
+
     
     private void Awake() {
         _hands = transform.Find("Hands");
@@ -52,6 +56,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireBullet() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
+        _gunshot.Play();
         GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
@@ -59,6 +64,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireMultipleBullets() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
+        _pompagun.Play();
         Vector3 dir = _fireSpot.transform.right;
         foreach (int i in new int[]{-1,0,1}) {
             GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
@@ -68,6 +74,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack() {
         _weapon.GetComponent<Animator>().SetTrigger("attack");
+        _swoosh.Play();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             _hands.position,
             weaponParameters.attackRange

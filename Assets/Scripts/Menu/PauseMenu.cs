@@ -10,11 +10,14 @@ public class PauseMenu : MonoBehaviour
     private GameObject _pauseUI;
     private GameObject _gameOverUI;
     private GameObject _youWonUI;
+    private AudioSource _music;
 
     private void Awake() {
         _pauseUI = transform.Find("PauseMenu").gameObject;
         _gameOverUI = transform.Find("GameOverMenu").gameObject;
         _youWonUI = transform.Find("YouWonMenu").gameObject;
+
+        _music = GameObject.Find("BG Music").GetComponent<AudioSource>();
     }
 
     private void FixedUpdate() {
@@ -36,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+        _music.Stop();
     }
 
     public void Quit() {
@@ -47,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         _gameOverUI.SetActive(true);
+        _music.Stop();
     }
 
     public void YouWon() {
@@ -54,6 +59,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         _youWonUI.transform.Find("TIME").GetComponent<Text>().text = FloatToTimestamp(Time.time-GameUtils.startTime);
         _youWonUI.SetActive(true);
+        _music.Stop();
     }
 
     private string FloatToTimestamp(float time) {
@@ -66,6 +72,7 @@ public class PauseMenu : MonoBehaviour
         GameUtils.weapon = GameUtils.default_players[GameUtils.character];
         SceneManager.LoadScene("Level_1");
         GameUtils.startTime = Time.time;
+        _music.Play();
     }
 
 }

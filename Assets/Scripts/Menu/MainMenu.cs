@@ -7,13 +7,17 @@ public class MainMenu : MonoBehaviour
 {
     private Vector3 _selected = new Vector3(6.5f,6.5f,6.5f);
     private Vector3 _unselected = new Vector3(5f,5f,5f);
+    private AudioSource _music;
     private void Awake() {
         DeselectAll();
         SelectPlayer(name: GameUtils.character);
+
+        _music = GameObject.Find("BG Music").GetComponent<AudioSource>();
     }
     public void PlayGame() {
         SceneManager.LoadScene("Level_1");
         GameUtils.startTime = Time.time;
+        _music.Play();
     }
 
     public void QuitGame() {
