@@ -11,22 +11,34 @@ public class ControlPlayerAwareness : MonoBehaviour
     public bool ShootPlayer {get; private set;}
     public Vector2 DirectionToPlayer {get; private set;}
     public Vector2 DirectionToShoot {get; private set;}
-    [SerializeField] private float _playerAwarenessDistance;
+    private float _playerAwarenessDistance = 5;
     [SerializeField] private float _playerShootDistance;
     [SerializeField] private float _playerAttackDistance;
     [SerializeField] private Transform _center;
     private Transform _player;
     private Path _path;
     private Seeker _seeker;
+    private Renderer _renderer;
 
     IEnumerator Start() {
         _seeker = _center.GetComponent<Seeker>();
         yield return new WaitUntil(() => GameUtils.isInstantiated);
         _player = GameUtils.player.transform;
+        _renderer = GetComponent<Renderer>();
     }
 
     void FixedUpdate() {
-        if (_player) CheckPlayer();
+        if (_player) {
+            UpdateAwarnessDistence();
+            CheckPlayer();
+        }
+    }
+
+    private void UpdateAwarnessDistence() {
+        if (_renderer.isVisible) 
+            _playerAwarenessDistance = (_player.Find("Hands").position - _center.position).magnitude;
+        else 
+            _playerAwarenessDistance = 0;
     }
 
     private void CheckPlayer() {

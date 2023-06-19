@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4b65ddcad4e406c9319d651de619d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 8
+  _defaultPlayerAwarenessDistance: 8
   _playerShootDistance: 0
   _playerAttackDistance: 2
   _center: {fileID: 8030353643265492742}
