@@ -20,6 +20,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private AudioSource _gunshot;
     [SerializeField] private AudioSource _pompagun;
     [SerializeField] private AudioSource _swoosh;
+    [SerializeField] private AudioSource _machinegun;
+    private bool _machineAudio = false;
 
     
     private void Awake() {
@@ -29,10 +31,7 @@ public class PlayerAttack : MonoBehaviour
     }
     
     private void FixedUpdate() {
-        if (fireContinuously) {
-            if (Time.time - _flowStartTime < _maxFlowTime) FireBullet();
-            else fireContinuously = false;
-        }
+        MachineGun();
     }
 
     private bool CanAttack() {
@@ -53,10 +52,21 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    private void MachineGun() {
+        if (fireContinuously) {
+            if (_machineAudio) {
+                _machinegun.Play();
+                _machineAudio = false;
+            }
+            if (Time.time - _flowStartTime < _maxFlowTime) FireBullet();
+            else fireContinuously = false;
+        }
+    }
+
     private void FireBullet() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
-        _gunshot.Play();
+        if (!fireContinuously) _gunshot.Play();
         GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
@@ -102,7 +112,8 @@ public class PlayerAttack : MonoBehaviour
             case WeaponParameters.FireMethods.non_stop:
                 if (CanAttack()) {
                     _flowStartTime = Time.time;
-                    fireContinuously = inputValue.isPressed;
+                    fireContinuously = true;
+                    _machineAudio = true;
                 }
                 break;
             case WeaponParameters.FireMethods.white:
