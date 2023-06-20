@@ -63,6 +63,8 @@ GameObject:
   - component: {fileID: 2201306213013410674}
   - component: {fileID: 7091968165489891940}
   - component: {fileID: 2911376959047048924}
+  - component: {fileID: 8148575873224814738}
+  - component: {fileID: 7960317250176717667}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -156,6 +158,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
+--- !u!50 &8148575873224814738
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702836413636874594}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!255 &7960317250176717667
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702836413636874594}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 2}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &3602626155617816450
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +679,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1265223729809828571, guid: 5395e0c6c9b67423fa3ac28c60058415, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: caa873dba56784ebc9ade41f0167d1bf, type: 3}
     - target: {fileID: 5927544628918544032, guid: 5395e0c6c9b67423fa3ac28c60058415, type: 3}
       propertyPath: m_RootOrder
       value: 0

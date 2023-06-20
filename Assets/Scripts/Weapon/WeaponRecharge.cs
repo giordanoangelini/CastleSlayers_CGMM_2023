@@ -13,6 +13,7 @@ public class WeaponRecharge : MonoBehaviour
     IEnumerator Start() {
         yield return new WaitUntil(() => GameUtils.isInstantiated);
         _player = GameUtils.player.transform;
+        this.GetComponent<FixedJoint2D>().connectedBody = _player.GetComponent<Rigidbody2D>();
         _slider = this.GetComponent<Slider>();
         _slider.minValue = -0.1f;
     }
@@ -22,11 +23,6 @@ public class WeaponRecharge : MonoBehaviour
     }
 
     private void UpdateSlider() {
-        transform.position = new Vector3(
-            _player.transform.position.x,
-            _player.transform.position.y + _offset,
-            transform.position.z
-        );
         _slider.maxValue = _player.GetComponent<PlayerAttack>().weaponParameters.timeBetweenAttacks;
         _slider.value = Time.time - GameUtils.lastFireTime;
     }
