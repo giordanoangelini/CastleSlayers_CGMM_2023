@@ -16,8 +16,6 @@ public class PauseMenu : MonoBehaviour
         _pauseUI = transform.Find("PauseMenu").gameObject;
         _gameOverUI = transform.Find("GameOverMenu").gameObject;
         _youWonUI = transform.Find("YouWonMenu").gameObject;
-
-        _music = GameObject.Find("BG Music").GetComponent<AudioSource>();
     }
 
     private void FixedUpdate() {
@@ -28,18 +26,29 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.visible = false;
         _pauseUI.SetActive(false);
+
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            audio.UnPause();
+        }
     }
 
     public void Pause() {
         Time.timeScale = 0f;
         Cursor.visible = true;
         _pauseUI.SetActive(true);
+
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            audio.Pause();
+        }
     }
 
-    public void MainMenu() {
+    public void MainMenuFromPause() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
-        _music.Stop();
+
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            audio.Stop();
+        }
     }
 
     public void Quit() {
@@ -51,7 +60,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         _gameOverUI.SetActive(true);
-        _music.Stop();
+        
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            audio.Stop();
+        }
     }
 
     public void YouWon() {
@@ -59,7 +71,10 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         _youWonUI.transform.Find("TIME").GetComponent<Text>().text = FloatToTimestamp(Time.time-GameUtils.startTime);
         _youWonUI.SetActive(true);
-        _music.Stop();
+        
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            audio.Stop();
+        }
     }
 
     private string FloatToTimestamp(float time) {
@@ -67,12 +82,7 @@ public class PauseMenu : MonoBehaviour
 	}
 
     public void Replay() {
-        Time.timeScale = 1f;
-        Cursor.visible = false;
-        GameUtils.weapon = GameUtils.default_players[GameUtils.character];
-        SceneManager.LoadScene("Level_1");
-        GameUtils.startTime = Time.time;
-        _music.Play();
+        MainMenu.PlayGame();
     }
 
 }

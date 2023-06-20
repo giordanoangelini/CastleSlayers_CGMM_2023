@@ -20,9 +20,9 @@ public class EnemyAttack : MonoBehaviour
     private bool _dead = false;
 
     private void Awake() {
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _controlPlayerAwareness = GetComponent<ControlPlayerAwareness>();
+        _rigidBody = this.GetComponent<Rigidbody2D>();
+        _animator = this.GetComponent<Animator>();
+        _controlPlayerAwareness = this.GetComponent<ControlPlayerAwareness>();
         _lastFireTime = Time.time;
     }
 
@@ -77,8 +77,8 @@ public class EnemyAttack : MonoBehaviour
 
     public void EnemyDeath() {
         _dead = true;
-        GetComponent<EnemyAttack>().enabled = false;
-        GetComponent<EnemyMovement>().enabled = false;
+        this.GetComponent<EnemyAttack>().enabled = false;
+        this.GetComponent<EnemyMovement>().enabled = false;
         GameUtils.DeathAnimation(gameObject, GetComponent<Animator>());
         Destroy(gameObject, 2f);
     }

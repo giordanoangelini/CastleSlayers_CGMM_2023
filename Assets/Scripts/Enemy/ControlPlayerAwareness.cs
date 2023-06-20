@@ -24,7 +24,7 @@ public class ControlPlayerAwareness : MonoBehaviour
         _seeker = _center.GetComponent<Seeker>();
         yield return new WaitUntil(() => GameUtils.isInstantiated);
         _player = GameUtils.player.transform;
-        _renderer = GetComponent<Renderer>();
+        _renderer = this.GetComponent<Renderer>();
     }
 
     void FixedUpdate() {

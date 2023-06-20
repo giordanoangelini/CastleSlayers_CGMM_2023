@@ -34,6 +34,11 @@ public class PlayerAttack : MonoBehaviour
         MachineGun();
     }
 
+    private void Update() {
+        if (Time.timeScale == 0) this.GetComponent<PlayerInput>().enabled = false;
+        else this.GetComponent<PlayerInput>().enabled = true;
+    }
+
     private bool CanAttack() {
         float timeSinceLastFire = Time.time - GameUtils.lastFireTime;
         if (timeSinceLastFire >= weaponParameters.timeBetweenAttacks && !_dead) return true;
@@ -126,8 +131,9 @@ public class PlayerAttack : MonoBehaviour
     public void PlayerDeath() {
         Camera.main.orthographicSize = 4;
         _dead = true;
-        GetComponent<PlayerMovement>().enabled = false;
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        this.GetComponent<PlayerMovement>().enabled = false;
+        this.GetComponent<PlayerAttack>().enabled = false;
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         _hands.gameObject.SetActive(false);
         transform.parent.Find("Crosshair").gameObject.SetActive(false);
         transform.parent.Find("Recharge").gameObject.SetActive(false);

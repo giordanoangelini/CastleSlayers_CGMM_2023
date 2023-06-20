@@ -12,9 +12,9 @@ public class EnemyMovement : MonoBehaviour
     private Animator _animator;
 
     private void Awake() {
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-        _controlPlayerAwareness = GetComponent<ControlPlayerAwareness>();
+        _rigidBody = this.GetComponent<Rigidbody2D>();
+        _animator = this.GetComponent<Animator>();
+        _controlPlayerAwareness = this.GetComponent<ControlPlayerAwareness>();
     }
 
     private void FixedUpdate() {

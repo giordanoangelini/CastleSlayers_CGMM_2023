@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator _animator;
     
     private void Awake() {
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _rigidBody = this.GetComponent<Rigidbody2D>();
+        _animator = this.GetComponent<Animator>();
     }
 
     private void FixedUpdate() {
