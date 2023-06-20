@@ -13,7 +13,7 @@ public class WeaponRecharge : MonoBehaviour
     IEnumerator Start() {
         yield return new WaitUntil(() => GameUtils.isInstantiated);
         _player = GameUtils.player.transform;
-        _slider = GetComponent<Slider>();
+        _slider = this.GetComponent<Slider>();
         _slider.minValue = -0.1f;
     }
     

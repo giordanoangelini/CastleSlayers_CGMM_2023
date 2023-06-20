@@ -10,7 +10,7 @@ public class PlayerAimWeapon : MonoBehaviour {
     private Transform _hands;
    
     private void Awake() {
-       _rigidBody = GetComponent<Rigidbody2D>();
+       _rigidBody = this.GetComponent<Rigidbody2D>();
        _hands = transform.Find("Hands");
     }
 
