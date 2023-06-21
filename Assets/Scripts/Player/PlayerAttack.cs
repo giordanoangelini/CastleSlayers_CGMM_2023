@@ -16,11 +16,6 @@ public class PlayerAttack : MonoBehaviour
     private float _maxFlowTime = 3f;
     private float _bulletSpeed = 20f;
     private bool _dead = false;
-
-    [SerializeField] private AudioSource _gunshot;
-    [SerializeField] private AudioSource _pompagun;
-    [SerializeField] private AudioSource _swoosh;
-    [SerializeField] private AudioSource _machinegun;
     private bool _machineAudio = false;
 
     
@@ -60,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
     private void MachineGun() {
         if (fireContinuously) {
             if (_machineAudio) {
-                _machinegun.Play();
+                Audio.instance.machinegun.Play();
                 _machineAudio = false;
             }
             if (Time.time - _flowStartTime < _maxFlowTime) FireBullet();
@@ -71,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireBullet() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
-        if (!fireContinuously) _gunshot.Play();
+        if (!fireContinuously) Audio.instance.gunshot.Play();
         GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
@@ -79,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireMultipleBullets() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
-        _pompagun.Play();
+        Audio.instance.pompagun.Play();
         Vector3 dir = _fireSpot.transform.right;
         foreach (int i in new int[]{-1,0,1}) {
             GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
@@ -89,7 +84,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack() {
         _weapon.GetComponent<Animator>().SetTrigger("attack");
-        _swoosh.Play();
+        Audio.instance.swoosh.Play();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             _hands.position,
             weaponParameters.attackRange
@@ -138,10 +133,16 @@ public class PlayerAttack : MonoBehaviour
         transform.parent.Find("Crosshair").gameObject.SetActive(false);
         transform.parent.Find("Recharge").gameObject.SetActive(false);
         GameUtils.DeathAnimation(gameObject, GetComponent<Animator>());
-        Destroy(gameObject, 2f);    
+        Destroy(gameObject, 2f);
+
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            if (audio != Audio.instance.BgMusic) audio.Stop();
+        }
+        Audio.instance.playerHit.Play();
     }
 
     private void OnDestroy() {
-        GameObject.Find("Pause").GetComponent<PauseMenu>().GameOver();
+        if(gameObject.scene.isLoaded)
+            GameObject.Find("Pause").GetComponent<PauseMenu>().GameOver();
     }
 }

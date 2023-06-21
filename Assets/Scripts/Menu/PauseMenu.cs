@@ -10,7 +10,6 @@ public class PauseMenu : MonoBehaviour
     private GameObject _pauseUI;
     private GameObject _gameOverUI;
     private GameObject _youWonUI;
-    private AudioSource _music;
 
     private void Awake() {
         _pauseUI = transform.Find("PauseMenu").gameObject;
@@ -60,10 +59,11 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         _gameOverUI.SetActive(true);
-        
+
         foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
             audio.Stop();
         }
+        Audio.instance.gameOverSound.Play();
     }
 
     public void YouWon() {
@@ -75,6 +75,7 @@ public class PauseMenu : MonoBehaviour
         foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
             audio.Stop();
         }
+        Audio.instance.youWonSound.Play();
     }
 
     private string FloatToTimestamp(float time) {

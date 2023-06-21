@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,6 @@ public static class GameUtils
     public static GameObject player;
     public static bool isPlayerDead = false;
     public static bool isInstantiated = false;
-
     public static float startTime;
 
     public static Dictionary<string, string> default_players = new Dictionary<string, string>(){

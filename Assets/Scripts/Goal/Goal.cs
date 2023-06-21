@@ -12,6 +12,7 @@ public class Goal : MonoBehaviour
             else {
                 Time.timeScale = 0f;
                 GameUtils.isInstantiated = false;
+                Audio.instance.changeSceneSound.Play();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
@@ -19,6 +20,5 @@ public class Goal : MonoBehaviour
 
     private void YouWon() {
         GameObject.Find("Pause").GetComponent<PauseMenu>().YouWon();
-        
     }
 }

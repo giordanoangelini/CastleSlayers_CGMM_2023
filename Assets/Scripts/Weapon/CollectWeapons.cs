@@ -14,8 +14,9 @@ public class CollectWeapons : MonoBehaviour
             DeactivateAll(parent: playerHands);
             GameObject newWeapon = playerHands.Find(gameObject.tag).gameObject;
             newWeapon.gameObject.SetActive(true);
+            Audio.instance.collectSound.Play();
             GameUtils.weapon = newWeapon.tag;
-            GameUtils.lastFireTime = Time.time - newWeapon.GetComponent<WeaponParameters>().timeBetweenAttacks;
+            GameUtils.lastFireTime = 0;
             playerHands.GetComponentInParent<PlayerAttack>().fireContinuously = false;
             Destroy(gameObject);
         }
@@ -24,6 +25,12 @@ public class CollectWeapons : MonoBehaviour
     private void DeactivateAll(Transform parent) {
         foreach (Transform child in parent) {
             if (child.gameObject.activeSelf) child.gameObject.SetActive(false);
+        }
+        foreach (Bullet bullet in FindObjectsOfType<Bullet>()) {
+            Destroy(bullet);
+        }
+        foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+            if (audio != Audio.instance.BgMusic) audio.Stop();
         }
     }
 
