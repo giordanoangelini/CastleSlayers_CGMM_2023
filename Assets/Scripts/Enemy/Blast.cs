@@ -7,6 +7,7 @@ public class Blast : MonoBehaviour
 {
     private float _blastLife = 2f;
     private void Awake() {
+        Audio.instance.enemyBlast.Play();
         Destroy(gameObject, _blastLife);
     }
     private void OnTriggerEnter2D(Collider2D collision) {

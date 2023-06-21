@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class WeaponRecharge : MonoBehaviour
 {
-    private float _offset = 0.3f;
     private Slider _slider;
     public Transform _player;
     private WeaponParameters _weaponParameters;

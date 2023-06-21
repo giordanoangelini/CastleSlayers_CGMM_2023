@@ -7,12 +7,9 @@ public class MainMenu : MonoBehaviour
 {
     private Vector3 _selected = new Vector3(6.5f,6.5f,6.5f);
     private Vector3 _unselected = new Vector3(5f,5f,5f);
-    private static AudioSource _music;
     private void Awake() {
         DeselectAll();
         SelectPlayer(name: GameUtils.character);
-
-        _music = GameObject.Find("BG Music").GetComponent<AudioSource>();
     }
     public static void PlayGame() {
         Time.timeScale = 1f;
@@ -20,7 +17,7 @@ public class MainMenu : MonoBehaviour
         GameUtils.weapon = GameUtils.default_players[GameUtils.character];
         SceneManager.LoadScene("Level_1");
         GameUtils.startTime = Time.time;
-        _music.Play();
+        Audio.instance.BgMusic.Play();
     }
 
     public void QuitGame() {

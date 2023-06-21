@@ -44,9 +44,7 @@ public class EnemyAttack : MonoBehaviour
                 _attackRange
             );
             foreach (Collider2D coll in hitPlayers) {
-                if (coll.tag == "player") {
-                    coll.GetComponent<PlayerAttack>().PlayerDeath();
-                }
+                if (coll.tag == "player") coll.GetComponent<PlayerAttack>().PlayerDeath();
             }
         }
     }
