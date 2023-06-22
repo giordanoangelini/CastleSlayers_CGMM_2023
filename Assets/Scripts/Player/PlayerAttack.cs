@@ -96,10 +96,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos() {
-        if (_hands) Gizmos.DrawWireSphere(_hands.position, weaponParameters.attackRange);
-    }
-
     private void OnFire(InputValue inputValue) {
         DetectWeapon();
         switch (weaponParameters.attackMethod) {

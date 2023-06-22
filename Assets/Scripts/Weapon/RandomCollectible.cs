@@ -10,8 +10,8 @@ public class RandomCollectible : MonoBehaviour
         public int weight;
     }
     [SerializeField] private WeaponStruct[] weapons;
-    List<GameObject> pickables = new List<GameObject>();
-    System.Random random = new System.Random();
+    private List<GameObject> pickables = new List<GameObject>();
+    private System.Random random = new System.Random();
     public GameObject getRandomWeapon(){
         foreach (WeaponStruct weapon in weapons) {
             for (int i = 0; i < weapon.weight; i++) {
