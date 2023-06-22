@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Audio : MonoBehaviour
 {
-    [SerializeField] public  AudioSource BgMusic;
+    [SerializeField] public AudioSource BgMusic;
     [SerializeField] public AudioSource changeSceneSound;
     [SerializeField] public AudioSource gameOverSound;
     [SerializeField] public AudioSource youWonSound;
@@ -22,4 +23,11 @@ public class Audio : MonoBehaviour
         if (instance == null) instance = this;
         else Destroy(gameObject);
     }
+
+    public static void PlaySound(AudioSource audio) {
+        audio.volume = GameUtils.master_volume/100;
+        audio.Play();
+    }
+
+    
 }

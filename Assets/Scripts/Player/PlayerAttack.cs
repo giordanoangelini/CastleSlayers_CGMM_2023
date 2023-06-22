@@ -55,7 +55,7 @@ public class PlayerAttack : MonoBehaviour
     private void MachineGun() {
         if (fireContinuously) {
             if (_machineAudio) {
-                Audio.instance.machinegun.Play();
+                Audio.PlaySound(Audio.instance.machinegun);
                 _machineAudio = false;
             }
             if (Time.time - _flowStartTime < _maxFlowTime) FireBullet();
@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireBullet() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
-        if (!fireContinuously) Audio.instance.gunshot.Play();
+        if (!fireContinuously) Audio.PlaySound(Audio.instance.gunshot);
         GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
         bullet.GetComponent<Rigidbody2D>().velocity = _bulletSpeed * _fireSpot.transform.right;
     }
@@ -74,7 +74,7 @@ public class PlayerAttack : MonoBehaviour
     private void FireMultipleBullets() {
         GameUtils.lastFireTime = Time.time;
         _weapon.GetComponent<Animator>().SetTrigger("shoot");
-        Audio.instance.pompagun.Play();
+        Audio.PlaySound(Audio.instance.pompagun);
         Vector3 dir = _fireSpot.transform.right;
         foreach (int i in new int[]{-1,0,1}) {
             GameObject bullet = Instantiate(weaponParameters.bulletPrefab, _fireSpot.transform.position, new Quaternion());
@@ -84,7 +84,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack() {
         _weapon.GetComponent<Animator>().SetTrigger("attack");
-        Audio.instance.swoosh.Play();
+        Audio.PlaySound(Audio.instance.swoosh);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             _hands.position,
             weaponParameters.attackRange
@@ -138,7 +138,7 @@ public class PlayerAttack : MonoBehaviour
         foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
             if (audio != Audio.instance.BgMusic) audio.Stop();
         }
-        Audio.instance.playerHit.Play();
+        Audio.PlaySound(Audio.instance.playerHit);
     }
 
     private void OnDestroy() {
