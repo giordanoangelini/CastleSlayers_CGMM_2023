@@ -48,10 +48,6 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(_center.position, _attackRange);
-    }
     
     private void FireBlast() {
         if (_controlPlayerAwareness.ShootPlayer) {

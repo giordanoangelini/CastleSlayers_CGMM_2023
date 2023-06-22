@@ -20,21 +20,21 @@ public class ControlPlayerAwareness : MonoBehaviour
     private Seeker _seeker;
     private Renderer _renderer;
 
-    IEnumerator Start() {
+    private IEnumerator Start() {
         _seeker = _center.GetComponent<Seeker>();
         yield return new WaitUntil(() => GameUtils.isInstantiated);
         _player = GameUtils.player.transform;
         _renderer = this.GetComponent<Renderer>();
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
         if (_player) {
-            UpdateAwarnessDistence();
+            UpdateAwarnessDistance();
             CheckPlayer();
         }
     }
 
-    private void UpdateAwarnessDistence() {
+    private void UpdateAwarnessDistance() {
         if (_renderer.isVisible) 
             _playerAwarenessDistance = (_player.Find("Hands").position - _center.position).magnitude;
         else 

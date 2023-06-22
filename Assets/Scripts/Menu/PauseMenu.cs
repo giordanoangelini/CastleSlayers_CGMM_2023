@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
         foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
             audio.Stop();
         }
-        Audio.instance.gameOverSound.Play();
+        Audio.PlaySound(Audio.instance.gameOverSound);
     }
 
     public void YouWon() {
@@ -75,7 +75,7 @@ public class PauseMenu : MonoBehaviour
         foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
             audio.Stop();
         }
-        Audio.instance.youWonSound.Play();
+        Audio.PlaySound(Audio.instance.youWonSound);
     }
 
     private string FloatToTimestamp(float time) {

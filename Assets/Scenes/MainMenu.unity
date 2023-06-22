@@ -869,6 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cc57863637a46e3902a17a12453d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mixer: {fileID: 24100000, guid: e2b3cf29793af4d17b08cb66ee078346, type: 2}
 --- !u!1 &1178147173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1145,7 @@ MonoBehaviour:
   collectSound: {fileID: 1303275685}
   enemyBlast: {fileID: 1303275695}
   playerHit: {fileID: 1303275694}
+  _mixer: {fileID: 24100000, guid: e2b3cf29793af4d17b08cb66ee078346, type: 2}
 --- !u!82 &1303275685
 AudioSource:
   m_ObjectHideFlags: 0

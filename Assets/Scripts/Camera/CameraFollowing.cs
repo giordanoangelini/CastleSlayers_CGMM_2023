@@ -7,7 +7,7 @@ public class CameraFollowing : MonoBehaviour
 {
     public Transform _target;
 
-    IEnumerator Start() {
+    private IEnumerator Start() {
         yield return new WaitUntil(() => GameUtils.isInstantiated);
         _target = GameUtils.player.transform;
     }
