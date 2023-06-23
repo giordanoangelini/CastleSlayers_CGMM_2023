@@ -12,8 +12,12 @@ public class Goal : MonoBehaviour
             else {
                 Time.timeScale = 0f;
                 GameUtils.isInstantiated = false;
-                Audio.PlaySound(Audio.instance.changeSceneSound);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+                foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
+                    if (audio != Audio.instance.BgMusic) audio.Stop();
+                }
+                Audio.PlaySound(Audio.instance.changeSceneSound);
             }
         }
     }
