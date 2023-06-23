@@ -98,24 +98,24 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnFire(InputValue inputValue) {
         DetectWeapon();
-        switch (weaponParameters.attackMethod) {
-            case WeaponParameters.FireMethods.single:
-                if (CanAttack()) FireBullet();
-                break;
-            case WeaponParameters.FireMethods.multiple:
-                if (CanAttack()) FireMultipleBullets();
-                break;
-            case WeaponParameters.FireMethods.non_stop:
-                if (CanAttack()) {
+        if (CanAttack()) {
+            switch (weaponParameters.attackMethod) {
+                case WeaponParameters.FireMethods.single:
+                    FireBullet();
+                    break;
+                case WeaponParameters.FireMethods.multiple:
+                    FireMultipleBullets();
+                    break;
+                case WeaponParameters.FireMethods.non_stop:
                     _flowStartTime = Time.time;
                     fireContinuously = true;
                     _machineAudio = true;
-                }
-                break;
-            case WeaponParameters.FireMethods.white:
-                if (CanAttack()) Attack();
-                break;
-            default: break;
+                    break;
+                case WeaponParameters.FireMethods.white:
+                    Attack();
+                    break;
+                default: break;
+            }
         }
     }
 
