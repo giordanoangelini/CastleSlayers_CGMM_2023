@@ -13,7 +13,7 @@ public static class GameUtils
     public static bool isPlayerDead = false;
     public static bool isInstantiated = false;
     public static float startTime;
-    public static float master_volume = 20;
+    public static float master_volume = 1;
 
     public static Dictionary<string, string> default_players = new Dictionary<string, string>(){
         {"Blake","weapon_1"},

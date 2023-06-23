@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
         GameUtils.weapon = GameUtils.default_players[GameUtils.character];
         SceneManager.LoadScene("Level_1");
         GameUtils.startTime = Time.time;
-        Audio.PlaySound(Audio.instance.BgMusic);
+        Audio.PlaySound(Audio.instance.BgMusic, 0.5f);
     }
 
     public void QuitGame() {

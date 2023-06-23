@@ -12,7 +12,7 @@ public class Goal : MonoBehaviour
             else {
                 Time.timeScale = 0f;
                 GameUtils.isInstantiated = false;
-                Audio.PlaySound(Audio.instance.changeSceneSound);
+                Audio.PlaySound(Audio.instance.changeSceneSound, 1);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
