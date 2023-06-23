@@ -24,7 +24,7 @@ public class Audio : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public static void PlaySound(AudioSource audio, float relative_volume) {
+    public static void PlaySound(AudioSource audio, float relative_volume = 1) {
         audio.volume = relative_volume * GameUtils.master_volume;
         audio.Play();
     }

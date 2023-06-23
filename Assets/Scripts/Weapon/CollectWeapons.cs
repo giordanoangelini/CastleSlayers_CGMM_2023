@@ -14,7 +14,7 @@ public class CollectWeapons : MonoBehaviour
             DeactivateAll(parent: playerHands);
             GameObject newWeapon = playerHands.Find(gameObject.tag).gameObject;
             newWeapon.gameObject.SetActive(true);
-            Audio.PlaySound(Audio.instance.collectSound, 1);
+            Audio.PlaySound(Audio.instance.collectSound);
             GameUtils.weapon = newWeapon.tag;
             GameUtils.lastFireTime = 0;
             playerHands.GetComponentInParent<PlayerAttack>().fireContinuously = false;
