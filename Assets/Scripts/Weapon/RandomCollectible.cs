@@ -12,7 +12,7 @@ public class RandomCollectible : MonoBehaviour
     [SerializeField] private WeaponStruct[] weapons;
     private List<GameObject> pickables = new List<GameObject>();
     private System.Random random = new System.Random();
-    public GameObject getRandomWeapon(){
+    public GameObject GetRandomWeapon(){
         foreach (WeaponStruct weapon in weapons) {
             for (int i = 0; i < weapon.weight; i++) {
                 if (GameUtils.weapon != weapon.prefab.tag) pickables.Add(weapon.prefab);
@@ -23,7 +23,7 @@ public class RandomCollectible : MonoBehaviour
     }
 
     private void Awake() {   
-        Instantiate(getRandomWeapon(), transform.position, Quaternion.identity, transform.parent);
+        Instantiate(GetRandomWeapon(), transform.position, Quaternion.identity, transform.parent);
         Destroy(gameObject);
     }
     

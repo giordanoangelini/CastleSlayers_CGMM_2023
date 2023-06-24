@@ -44,7 +44,7 @@ public class ControlPlayerAwareness : MonoBehaviour
     private void CheckPlayer() {
         if (_player.GetComponent<PlayerMovement>().enabled) {
             if (!AwareOfPlayer) EnemySeePlayer();
-            if (AwareOfPlayer) FindPath();
+            else FindPath();
             CheckDistances();
         } else {
             AwareOfPlayer = false;
