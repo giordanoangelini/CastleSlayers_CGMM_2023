@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject[] _utilities;
-    private void Start() {
+    private void Awake() {
         foreach (Transform player in transform) {
             if (GameUtils.character == player.name){
                 player.gameObject.SetActive(true);
@@ -16,7 +16,5 @@ public class PlayerSpawn : MonoBehaviour
                     Destroy(player.gameObject);
             }
         }
-        GameUtils.isInstantiated = true;
-        Time.timeScale = 1f;
     }
 }

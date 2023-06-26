@@ -20,9 +20,8 @@ public class ControlPlayerAwareness : MonoBehaviour
     private Seeker _seeker;
     private Renderer _renderer;
 
-    private IEnumerator Start() {
+    private void Start() {
         _seeker = _center.GetComponent<Seeker>();
-        yield return new WaitUntil(() => GameUtils.isInstantiated);
         _player = GameUtils.player.transform;
         _renderer = this.GetComponent<Renderer>();
     }
@@ -52,7 +51,6 @@ public class ControlPlayerAwareness : MonoBehaviour
             ShootPlayer = false;
         }
     }
-
     private void EnemySeePlayer() {
         Vector3 dir = Vector3.zero;
         if(transform.localScale.x < 0) dir = -transform.right;

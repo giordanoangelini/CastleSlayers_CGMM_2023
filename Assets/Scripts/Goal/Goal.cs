@@ -10,10 +10,7 @@ public class Goal : MonoBehaviour
         if (collision.tag == "player") {
             if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1) YouWon();
             else {
-                Time.timeScale = 0f;
-                GameUtils.isInstantiated = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
                 foreach (AudioSource audio in FindObjectsOfType<AudioSource>()){
                     if (audio != Audio.instance.BgMusic) audio.Stop();
                 }

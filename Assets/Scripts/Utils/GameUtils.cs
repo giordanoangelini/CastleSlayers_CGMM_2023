@@ -11,7 +11,6 @@ public static class GameUtils
     private static Vector3 _mousePos;
     public static GameObject player;
     public static bool isPlayerDead = false;
-    public static bool isInstantiated = false;
     public static float startTime;
     public static float master_volume = 1;
 

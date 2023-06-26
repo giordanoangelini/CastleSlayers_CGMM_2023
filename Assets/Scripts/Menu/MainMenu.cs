@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
         Audio.PlaySound(Audio.instance.BgMusic, 0.5f);
     }
 
-    public void QuitGame() {
+    public static void QuitGame() {
         Debug.Log("Bye");
         Application.Quit();
     }

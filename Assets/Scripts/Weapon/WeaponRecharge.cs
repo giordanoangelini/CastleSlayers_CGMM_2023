@@ -9,8 +9,7 @@ public class WeaponRecharge : MonoBehaviour
     public Transform _player;
     private WeaponParameters _weaponParameters;
 
-    IEnumerator Start() {
-        yield return new WaitUntil(() => GameUtils.isInstantiated);
+    private void Start() {
         _player = GameUtils.player.transform;
         this.GetComponent<FixedJoint2D>().connectedBody = _player.GetComponent<Rigidbody2D>();
         _slider = this.GetComponent<Slider>();
