@@ -1,4 +1,3 @@
-# CastleSlayers_CGMM_2023
 <img src = "Assets/Slides/Presentazione CG_page-0001.jpg">
 <img src = "Assets/Slides/Presentazione CG_page-0002.jpg">
 <img src = "Assets/Slides/Presentazione CG_page-0003.jpg">
